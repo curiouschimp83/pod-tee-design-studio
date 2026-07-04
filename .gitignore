@@ -1,0 +1,36 @@
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS just in case
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+
+# Node
+node_modules/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Large generated exports
+exports/
+generated/
+dist/
+build/
+
+# ChatGPT / local working clutter
+*.zip
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.psd
+*.ai

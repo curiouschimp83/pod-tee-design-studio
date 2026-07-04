@@ -1,0 +1,1497 @@
+{
+  "name": "POD GPT Style Profiles",
+  "version": "8.0",
+  "purpose": "Defines commercial POD art styles, composition behaviour, wearable design logic, originality controls, audience-style alignment, hybrid style handling, and artwork-only preview style behaviour.",
+  "core_rule": "Every style profile must optimise for wearability, readability, silhouette clarity, audience fit, commercial distinctiveness, and marketplace thumbnail impact.",
+  "global_rules": {
+    "prioritise": [
+      "strong buyer signal",
+      "clear humour or emotional hook",
+      "strong silhouette",
+      "readable typography",
+      "thumbnail clarity",
+      "wearability",
+      "style-audience fit",
+      "clean composition",
+      "print friendliness",
+      "commercial appeal",
+      "visual originality"
+    ],
+    "avoid": [
+      "generic AI vector sameness",
+      "default circular badge layouts unless requested",
+      "weak slogans with decorative art",
+      "over-rendered AI texture",
+      "random decorative filler",
+      "tiny unreadable details",
+      "muddy gradients",
+      "overcomplicated compositions",
+      "unintentional poster clutter",
+      "style choices that do not fit the buyer",
+      "workflow formatting appearing inside artwork"
+    ],
+    "default_shirt_assumption": "black shirt unless the niche, audience, or style suggests a stronger commercial colour",
+    "default_layout": "centred isolated artwork unless a different wearable composition improves the concept",
+    "default_canvas_behaviour": [
+      "clear central focus",
+      "intentional negative space",
+      "clean edge separation",
+      "thumbnail-readable layout",
+      "shirt-colour compatibility"
+    ],
+    "default_preview_behaviour": [
+      "standalone apparel artwork",
+      "print-first graphic",
+      "style aligned with target buyer",
+      "clear visual hierarchy",
+      "no accidental workflow/interface content"
+    ],
+    "negative_prompt_policy": "Use one concise exclusion phrase when needed. Do not repeat long forbidden-element lists inside every style profile."
+  },
+  "style_selection_logic": {
+    "core_rule": "Choose style based on buyer, niche, humour type, emotional tone, shirt colour, and commercial positioning. Do not default to one generic vector look.",
+    "selection_factors": [
+      "target audience",
+      "subculture codes",
+      "humour mode",
+      "identity signal",
+      "giftability",
+      "shirt colour",
+      "print method friendliness",
+      "marketplace thumbnail needs",
+      "user-provided references",
+      "trend or era cue"
+    ],
+    "if_user_unsure": {
+      "default_recommendations": [
+        "bold_graphic_tee",
+        "vintage_distressed",
+        "streetwear_vector"
+      ],
+      "rule": "Suggest 2-3 styles that genuinely fit the concept rather than listing every style."
+    },
+    "if_commercial_mass_market": {
+      "prefer": [
+        "bold_graphic_tee",
+        "mascot_logo",
+        "vintage_distressed",
+        "clean_typography"
+      ]
+    },
+    "if_fashion_forward": {
+      "prefer": [
+        "minimal_line_art",
+        "japanese_minimal",
+        "streetwear_vector",
+        "premium_symbolic"
+      ]
+    },
+    "if_humour_focused": {
+      "prefer": [
+        "bold_graphic_tee",
+        "cute_cartoon",
+        "deadpan_typography",
+        "retro_distressed_humour"
+      ]
+    },
+    "if_identity_signalling": {
+      "prefer": [
+        "hardcore_typography",
+        "streetwear_vector",
+        "metal_band_style",
+        "regional_pride",
+        "badge_emblem"
+      ]
+    },
+    "if_nature_or_outdoor": {
+      "prefer": [
+        "vintage_distressed",
+        "retro_sunset",
+        "woodcut_illustration",
+        "minimal_line_art",
+        "earthy_badge"
+      ]
+    },
+    "if_edgy_or_alt": {
+      "prefer": [
+        "metal_band_style",
+        "punk_zine",
+        "skate_graphic",
+        "grunge_halftone",
+        "dark_cute"
+      ]
+    },
+    "if_cute_or_giftable": {
+      "prefer": [
+        "cute_cartoon",
+        "kawaii_pastel",
+        "mascot_logo",
+        "soft_vintage"
+      ]
+    }
+  },
+  "hybrid_style_logic": {
+    "enabled": true,
+    "purpose": "Allow two compatible style profiles to blend for more original output.",
+    "rules": [
+      "Blend no more than two dominant styles unless the user explicitly asks.",
+      "One style should control composition.",
+      "One style may control texture, typography, or colour.",
+      "Do not create messy style soup.",
+      "Use hybridisation to avoid generic output, not to add complexity for its own sake."
+    ],
+    "good_hybrids": [
+      "vintage_distressed + deadpan_typography",
+      "minimal_line_art + japanese_minimal",
+      "streetwear_vector + grunge_halftone",
+      "cute_cartoon + dark_cute",
+      "woodcut_illustration + earthy_badge",
+      "metal_band_style + regional_pride",
+      "retro_sunset + outdoor_badge",
+      "punk_zine + hardcore_typography"
+    ],
+    "bad_hybrids": [
+      "too many textures at once",
+      "cute cartoon plus hyperrealism unless intentionally absurd",
+      "premium minimal plus cluttered mascot",
+      "metal typography plus tiny unreadable paragraph text"
+    ]
+  },
+  "commercial_design_rules": {
+    "must_pass_checks": [
+      "understandable in under 2 seconds",
+      "works at thumbnail size",
+      "wearable by target audience",
+      "clear focal point",
+      "readable text if present",
+      "clear silhouette or typography hierarchy",
+      "specific buyer signal",
+      "style fits niche culture"
+    ],
+    "high_performance_traits": [
+      "tribal identity signalling",
+      "inside joke",
+      "clear humour hook",
+      "emotionally resonant messaging",
+      "strong niche targeting",
+      "simple but memorable visuals",
+      "distinctive typography",
+      "unexpected visual contrast",
+      "giftable buyer type",
+      "style that feels intentional rather than default"
+    ],
+    "weak_performance_traits": [
+      "generic concept",
+      "unclear audience",
+      "confusing humour",
+      "weak slogan",
+      "vague style direction",
+      "samey vector illustration",
+      "decorative but not meaningful",
+      "overly broad targeting",
+      "visual clutter",
+      "unreadable text",
+      "mismatched shirt colour"
+    ]
+  },
+  "composition_system": {
+    "core_rule": "Wearability does not always mean centred mascot. Choose the strongest apparel composition for the concept.",
+    "allowed_compositions": [
+      "centred chest print",
+      "badge emblem",
+      "typography stack",
+      "small left chest mark",
+      "large back print concept",
+      "asymmetric diagonal layout",
+      "arched typography with central icon",
+      "mascot plus short text",
+      "symbol-only minimal design",
+      "poster-inspired crop",
+      "frame with controlled background",
+      "horizontal wordmark",
+      "vertical Japanese-inspired layout",
+      "distressed stamp",
+      "single-object punchline",
+      "split text and icon"
+    ],
+    "composition_choice_rules": [
+      "Humour designs usually need fast readability.",
+      "Identity designs need clear symbolic recognition.",
+      "Fashion-forward designs can use more negative space.",
+      "Alternative or punk designs can tolerate more visual noise if intentional.",
+      "Vintage designs can use texture but must preserve readability.",
+      "Typography designs must keep wording short and high contrast."
+    ],
+    "avoid": [
+      "accidental poster rectangles",
+      "wallpaper-style backgrounds",
+      "uncontrolled scenery",
+      "tiny props that do not help the joke",
+      "floating random objects",
+      "edge crowding",
+      "same badge layout on every idea"
+    ]
+  },
+  "colour_system": {
+    "core_rule": "Black-shirt optimisation is useful but not mandatory. Choose palette and shirt colour by niche, style, and buyer taste.",
+    "shirt_colour_logic": {
+      "black": "Best for high contrast, metal, streetwear, bold humour, gothic, dark cute, and most general POD graphics.",
+      "cream": "Best for vintage, outdoors, cottagecore, mushrooms, coffee, retro, soft humour, and premium natural designs.",
+      "white": "Best for clean minimal, Japanese minimal, typography-led designs, colourful cartoon art, and lightweight summer niches.",
+      "heather_grey": "Best for casual dad humour, gym, outdoor, understated identity designs, and vintage athletic looks.",
+      "sage": "Best for nature, camping, mushrooms, gardening, slow living, folk, and earthy aesthetics.",
+      "navy": "Best for nautical, Welsh, outdoors, dad humour, retro sports, and smart casual designs.",
+      "forest_green": "Best for woodland, camping, mushrooms, hiking, nature identity, and rustic designs.",
+      "burgundy": "Best for vintage, gothic, Welsh pride, autumn niches, and premium retro designs.",
+      "pastel": "Best for kawaii, cute animals, soft goth, cottagecore, wholesome humour, and gift designs.",
+      "bright_colour": "Best for kids, rave, streetwear, surf, retro 90s, Y2K, and loud novelty concepts."
+    },
+    "palette_rules": [
+      "Use high contrast for text.",
+      "Avoid muddy mid-tones on dark shirts.",
+      "Use cream/off-white instead of pure white for vintage.",
+      "Use limited colour when readability matters.",
+      "Use bolder colour blocking for streetwear.",
+      "Use softer palettes for cute or cottagecore designs.",
+      "Use harsh contrast for punk, metal, and aggressive typography.",
+      "Do not use colour variety as a substitute for concept strength."
+    ]
+  },
+  "style_profiles": {
+    "bold_graphic_tee": {
+      "display_name": "Bold Graphic Tee",
+      "description": "Commercial high-readability POD style optimised for fast recognition, mass-market humour, and clear identity signalling.",
+      "best_for": [
+        "humour shirts",
+        "identity shirts",
+        "viral concepts",
+        "giftable designs",
+        "general POD marketplaces",
+        "simple character designs"
+      ],
+      "visual_traits": [
+        "bold outlines",
+        "high contrast",
+        "simple shapes",
+        "strong silhouette",
+        "clean spacing",
+        "clear typography hierarchy"
+      ],
+      "composition_rules": [
+        "one dominant focal point",
+        "minimal secondary detail",
+        "large readable typography if used",
+        "avoid tiny supporting elements",
+        "allow badge or arched text if it strengthens the design"
+      ],
+      "colour_rules": [
+        "high contrast preferred",
+        "2-5 colours ideal",
+        "black, navy, heather grey, or cream shirt compatibility",
+        "use accent colour to support the hook"
+      ],
+      "commercial_strength": "Very high",
+      "generic_risk": "Can become bland if the subject and slogan are too broad.",
+      "anti_generic_moves": [
+        "add niche-specific prop",
+        "use sharper slogan",
+        "use unusual expression or pose",
+        "avoid default clipart posture",
+        "choose typography with personality"
+      ],
+      "prompt_note": "Use this when clarity and broad commercial readability matter more than artistic complexity."
+    },
+    "vintage_distressed": {
+      "display_name": "Vintage Distressed",
+      "description": "Retro POD style with aged texture, softened colour, worn ink, and nostalgic market appeal.",
+      "best_for": [
+        "outdoor niches",
+        "camping",
+        "mushrooms",
+        "dad humour",
+        "retro slogans",
+        "nostalgia niches",
+        "americana-inspired concepts",
+        "sports-inspired apparel",
+        "regional pride"
+      ],
+      "visual_traits": [
+        "aged texture",
+        "faded ink effect",
+        "retro typography",
+        "worn print feel",
+        "muted palette",
+        "slightly imperfect edges"
+      ],
+      "composition_rules": [
+        "keep distress subtle enough for readability",
+        "use arched or stacked typography when appropriate",
+        "allow badge, stamp, or sunset framing",
+        "maintain strong silhouette",
+        "avoid fake over-distressing"
+      ],
+      "colour_rules": [
+        "cream and faded off-white preferred",
+        "muted orange, brown, ochre, olive, rust, navy",
+        "works well on cream, forest green, heather grey, navy, burgundy, black",
+        "avoid neon unless intentionally retro 80s"
+      ],
+      "commercial_strength": "High",
+      "generic_risk": "Retro sunset and distressed badge styles are saturated if used without a sharper hook.",
+      "anti_generic_moves": [
+        "use niche-specific phrase",
+        "avoid default mountain-sunset unless relevant",
+        "add unexpected object or joke",
+        "use regional or hobby-specific cues",
+        "make distress texture controlled not random"
+      ],
+      "prompt_note": "Use this for warm, nostalgic, giftable, outdoorsy, or retro identity concepts."
+    },
+    "minimal_line_art": {
+      "display_name": "Minimal Line Art",
+      "description": "Clean line-based wearable design style with premium, subtle, fashion-forward appeal.",
+      "best_for": [
+        "premium minimal apparel",
+        "nature themes",
+        "subtle humour",
+        "small chest designs",
+        "fashion-forward shirts",
+        "symbolic designs",
+        "artwork-only concepts"
+      ],
+      "visual_traits": [
+        "clean outlines",
+        "sparse composition",
+        "high negative space",
+        "simple geometry",
+        "controlled line weight",
+        "quiet visual confidence"
+      ],
+      "composition_rules": [
+        "avoid overcrowding",
+        "focus on elegant spacing",
+        "keep forms recognisable",
+        "use asymmetry or small placement when useful",
+        "do not rely on detail density"
+      ],
+      "colour_rules": [
+        "monochrome preferred",
+        "1-3 colours ideal",
+        "works on white, cream, black, sage, heather grey",
+        "use one accent colour only if it adds meaning"
+      ],
+      "commercial_strength": "Moderate to high",
+      "generic_risk": "Can become too plain or decorative if the concept lacks emotional or identity pull.",
+      "anti_generic_moves": [
+        "use a symbol with meaning",
+        "add subtle niche cue",
+        "use clever negative space",
+        "make the line art express the joke",
+        "avoid generic stock-icon feel"
+      ],
+      "prompt_note": "Use this when the buyer wants subtle, tasteful, wearable design rather than loud novelty."
+    },
+    "streetwear_vector": {
+      "display_name": "Streetwear Vector",
+      "description": "Modern graphic streetwear style with strong shape language, bold layout, and confident visual identity.",
+      "best_for": [
+        "urban fashion",
+        "anime-inspired graphics",
+        "edgy branding",
+        "graphic identity shirts",
+        "gaming culture",
+        "youth niches",
+        "loud statement designs"
+      ],
+      "visual_traits": [
+        "sharp edges",
+        "clean vector look",
+        "bold colour blocking",
+        "high contrast",
+        "large graphic shapes",
+        "dynamic cropping",
+        "confident type placement"
+      ],
+      "composition_rules": [
+        "strong central or diagonal balance",
+        "allow asymmetric layout",
+        "large readable forms",
+        "controlled visual aggression",
+        "avoid bland mascot pose"
+      ],
+      "colour_rules": [
+        "bold colour blocking",
+        "black, white, acid green, red, cobalt, orange, purple, cream",
+        "works well on black, white, navy, grey, bright shirts",
+        "high contrast preferred"
+      ],
+      "commercial_strength": "High",
+      "generic_risk": "Can feel like generic AI esports art if too polished or symbolically empty.",
+      "anti_generic_moves": [
+        "use unusual crop",
+        "add subculture-specific type",
+        "use harsher contrast",
+        "avoid fake logo feel unless intended",
+        "mix with grunge or halftone for texture"
+      ],
+      "prompt_note": "Use this when the design needs attitude, modern edge, or visual punch."
+    },
+    "gta_inspired_graphic": {
+      "display_name": "GTA-Inspired Graphic Style",
+      "description": "Stylised illustrated graphic tee inspired by bold game-art aesthetics while remaining original, wearable, and print-friendly.",
+      "best_for": [
+        "character shirts",
+        "satirical graphics",
+        "parody-style concepts",
+        "statement apparel",
+        "larger-than-life personality designs",
+        "comic crime or chaos humour"
+      ],
+      "visual_traits": [
+        "clean cel-shaded rendering",
+        "strong outlines",
+        "bold facial shapes",
+        "graphic composition",
+        "dramatic attitude",
+        "poster influence without full poster clutter"
+      ],
+      "composition_rules": [
+        "avoid full cinematic poster layout unless user asks",
+        "use tight character framing",
+        "reduce unnecessary scenery",
+        "focus on wearable crop",
+        "use strong expression or gesture"
+      ],
+      "colour_rules": [
+        "bold saturated colours",
+        "black, white, navy, or bright shirt compatibility",
+        "use contrast between skin, clothing, and text",
+        "avoid muddy lighting"
+      ],
+      "commercial_strength": "High for character-led humour",
+      "generic_risk": "Can drift into protected IP imitation or overdone game-poster aesthetics.",
+      "anti_generic_moves": [
+        "make character original",
+        "avoid direct logos or exact likenesses",
+        "use fresh slogan or scenario",
+        "crop for shirt not poster",
+        "combine with streetwear or typography"
+      ],
+      "prompt_note": "Use this for bold character energy, not for direct copying of protected game artwork."
+    },
+    "mascot_logo": {
+      "display_name": "Mascot Logo",
+      "description": "Strong mascot-driven POD design with logo-like simplicity, expressive character, and clean market readability.",
+      "best_for": [
+        "gaming shirts",
+        "sports-inspired apparel",
+        "community brands",
+        "cartoon identity graphics",
+        "pet niches",
+        "animal humour",
+        "giftable character designs"
+      ],
+      "visual_traits": [
+        "large central mascot",
+        "simple strong outline",
+        "logo-style readability",
+        "expressive face",
+        "bold silhouette",
+        "limited supporting text"
+      ],
+      "composition_rules": [
+        "single dominant mascot",
+        "avoid excessive detail",
+        "strong thumbnail readability",
+        "use arched text or badge only when it helps",
+        "make the expression carry the joke"
+      ],
+      "colour_rules": [
+        "limited palette",
+        "strong contrast",
+        "works well on black, white, navy, heather grey",
+        "use accent colour for personality"
+      ],
+      "commercial_strength": "Very high",
+      "generic_risk": "Mascots become generic fast if the pose, expression, and slogan are bland.",
+      "anti_generic_moves": [
+        "make the face specific",
+        "add niche object",
+        "use unusual attitude",
+        "avoid stock mascot smile",
+        "use typography with character"
+      ],
+      "prompt_note": "Use when the design needs fast recognition and character-based appeal."
+    },
+    "retro_sunset": {
+      "display_name": "Retro Sunset",
+      "description": "Classic retro stripe/sunset POD aesthetic, useful for outdoor, nostalgic, and laid-back humour concepts.",
+      "best_for": [
+        "outdoor niches",
+        "camping",
+        "hiking",
+        "surf",
+        "dad humour",
+        "travel nostalgia",
+        "mushroom foraging",
+        "retro parody"
+      ],
+      "visual_traits": [
+        "retro stripe gradients",
+        "circular or arched framing",
+        "silhouette foregrounds",
+        "warm nostalgic palette",
+        "simple scenic cues"
+      ],
+      "composition_rules": [
+        "keep central subject clear",
+        "avoid muddy gradients",
+        "do not use default sunset if it adds nothing",
+        "use subject silhouette or icon to anchor the design",
+        "combine with short slogan"
+      ],
+      "colour_rules": [
+        "orange, rust, ochre, cream, brown, faded red, purple",
+        "works on cream, black, navy, forest green, heather grey",
+        "avoid too many gradient bands"
+      ],
+      "commercial_strength": "Moderate to high",
+      "generic_risk": "Very saturated if used as generic mountain/sunset clipart.",
+      "anti_generic_moves": [
+        "make the subject unusual",
+        "add niche-specific joke",
+        "use non-standard framing",
+        "combine with foraging, camping, van, Welsh, or dad angle",
+        "make the sunset secondary not the whole idea"
+      ],
+      "prompt_note": "Use carefully. It works when the niche hook is stronger than the sunset template."
+    },
+    "cute_cartoon": {
+      "display_name": "Cute Cartoon",
+      "description": "Friendly simplified cartoon aesthetic optimised for broad appeal, giftability, and character-led humour.",
+      "best_for": [
+        "animal shirts",
+        "family apparel",
+        "gift designs",
+        "children's humour",
+        "pet niches",
+        "wholesome humour",
+        "soft novelty"
+      ],
+      "visual_traits": [
+        "rounded shapes",
+        "friendly expressions",
+        "simple readable forms",
+        "large eyes or expressive features when useful",
+        "soft outline",
+        "warm character appeal"
+      ],
+      "composition_rules": [
+        "large facial readability",
+        "avoid excessive detail",
+        "make emotion instantly recognisable",
+        "let pose or expression carry the joke",
+        "keep text short"
+      ],
+      "colour_rules": [
+        "warm friendly colours",
+        "pastels or soft contrast for cute niches",
+        "works on cream, white, pastel, black if outlined strongly",
+        "avoid muddy brown-on-black combinations"
+      ],
+      "commercial_strength": "High for giftable niches",
+      "generic_risk": "Can become childish or generic if the joke is weak.",
+      "anti_generic_moves": [
+        "add unexpected attitude",
+        "use adult deadpan slogan with cute art",
+        "make the pose specific",
+        "add niche object",
+        "use dark-cute contrast when appropriate"
+      ],
+      "prompt_note": "Use when charm, expression, and giftability matter."
+    },
+    "hardcore_typography": {
+      "display_name": "Hardcore Typography",
+      "description": "Text-driven apparel style with aggressive hierarchy, strong readability, and bold identity signalling.",
+      "best_for": [
+        "gym shirts",
+        "political slogans",
+        "statement apparel",
+        "identity signalling",
+        "anti-mainstream humour",
+        "regional pride",
+        "high-confidence phrase designs"
+      ],
+      "visual_traits": [
+        "large bold fonts",
+        "strong hierarchy",
+        "minimal supporting graphics",
+        "heavy type blocks",
+        "high contrast",
+        "punchy layout"
+      ],
+      "composition_rules": [
+        "text must remain readable at thumbnail size",
+        "avoid overcomplicated fonts",
+        "prioritise quick recognition",
+        "use 1-2 supporting icons maximum",
+        "make line breaks rhythmically strong"
+      ],
+      "colour_rules": [
+        "high contrast",
+        "white/cream on black",
+        "black on cream/white",
+        "red or yellow accent for aggression",
+        "avoid low contrast novelty colours"
+      ],
+      "commercial_strength": "High when slogan is strong",
+      "generic_risk": "Typography cannot save weak wording.",
+      "anti_generic_moves": [
+        "cut the slogan shorter",
+        "use stronger rhythm",
+        "use subculture-specific words",
+        "use unexpected type pairing",
+        "avoid generic all-caps motivational text"
+      ],
+      "prompt_note": "Use when the phrase is the product."
+    },
+    "metal_band_style": {
+      "display_name": "Metal Band Style",
+      "description": "Aggressive dark graphic style inspired by metal apparel aesthetics, high contrast, and extreme subculture signalling.",
+      "best_for": [
+        "heavy music culture",
+        "dark fantasy",
+        "occult parody",
+        "extreme humour",
+        "gothic niches",
+        "dark nature",
+        "skulls, beasts, mythic subjects"
+      ],
+      "visual_traits": [
+        "high contrast",
+        "dark textures",
+        "dramatic iconography",
+        "ornate but controlled detail",
+        "sharp shapes",
+        "heavy atmosphere"
+      ],
+      "composition_rules": [
+        "maintain readable focal point",
+        "avoid muddy over-detailing",
+        "ensure design still works as apparel",
+        "use symmetrical compositions when powerful",
+        "keep typography readable unless illegibility is niche-intentional"
+      ],
+      "colour_rules": [
+        "black shirt default",
+        "white, bone, red, silver, muted gold accents",
+        "high contrast required",
+        "avoid low-contrast dark-on-dark detail"
+      ],
+      "commercial_strength": "High for alt niches",
+      "generic_risk": "Can become muddy AI skull soup or unreadable faux-metal clutter.",
+      "anti_generic_moves": [
+        "choose one dominant icon",
+        "limit texture noise",
+        "make parody or slogan sharp",
+        "avoid unreadable band-logo type unless intentional",
+        "combine dark art with funny mundane subject"
+      ],
+      "prompt_note": "Use for strong subculture identity, not generic spooky decoration."
+    },
+    "japanese_minimal": {
+      "display_name": "Japanese Minimal",
+      "description": "Clean Japanese-inspired fashion graphic style using balance, restraint, symbolic form, and controlled typography.",
+      "best_for": [
+        "fashion-forward apparel",
+        "anime-inspired minimalism",
+        "subtle identity shirts",
+        "nature icons",
+        "koi, moon, waves, cats, cranes",
+        "premium symbolic designs"
+      ],
+      "visual_traits": [
+        "minimal compositions",
+        "brush-inspired forms",
+        "balanced spacing",
+        "controlled typography",
+        "symbolic simplicity",
+        "quiet contrast"
+      ],
+      "composition_rules": [
+        "high negative space",
+        "controlled vertical or circular balance",
+        "avoid overcrowding",
+        "use small red stamp accent when useful",
+        "make the symbol instantly recognisable"
+      ],
+      "colour_rules": [
+        "black, white, cream, red accent",
+        "navy and muted indigo work well",
+        "works on white, cream, black, navy",
+        "1-3 colours preferred"
+      ],
+      "commercial_strength": "Moderate to high",
+      "generic_risk": "Can become generic faux-Japanese if symbolism is shallow or random.",
+      "anti_generic_moves": [
+        "use meaningful symbol choice",
+        "avoid random kanji",
+        "keep typography accurate if used",
+        "use strong negative space",
+        "combine with niche-specific subject"
+      ],
+      "prompt_note": "Use for premium restraint, not random Japanese decoration."
+    },
+    "skate_graphic": {
+      "display_name": "Skate Graphic",
+      "description": "Energetic graphic style inspired by skate apparel, deck graphics, stickers, and alternative youth culture.",
+      "best_for": [
+        "youth fashion",
+        "alternative streetwear",
+        "graphic humour",
+        "weird characters",
+        "irreverent slogans",
+        "animals with attitude",
+        "subculture designs"
+      ],
+      "visual_traits": [
+        "bold shapes",
+        "dynamic angles",
+        "graphic punch",
+        "sticker-like forms",
+        "rough energy",
+        "playful aggression"
+      ],
+      "composition_rules": [
+        "maintain readability",
+        "allow controlled chaos",
+        "use dynamic posing",
+        "use strong type placement",
+        "avoid polished corporate layout"
+      ],
+      "colour_rules": [
+        "black, white, red, acid green, yellow, blue, purple",
+        "high contrast",
+        "works on black, white, grey, bright colours",
+        "use noisy colours intentionally"
+      ],
+      "commercial_strength": "High for edgy youth niches",
+      "generic_risk": "Can become fake streetwear if too polished or too obviously AI.",
+      "anti_generic_moves": [
+        "roughen edges",
+        "use hand-drawn type",
+        "add sticker/zine texture",
+        "make character pose specific",
+        "use absurd humour"
+      ],
+      "prompt_note": "Use for attitude, not clean corporate mascot art."
+    },
+    "clean_typography": {
+      "display_name": "Clean Typography",
+      "description": "Readable type-led POD style for slogans, identity phrases, quote shirts, and minimalist commercial designs.",
+      "best_for": [
+        "slogan shirts",
+        "identity phrases",
+        "gift designs",
+        "dad humour",
+        "profession shirts",
+        "regional pride",
+        "minimal statement tees"
+      ],
+      "visual_traits": [
+        "clean readable fonts",
+        "strong hierarchy",
+        "balanced line breaks",
+        "simple supporting icon if needed",
+        "high contrast"
+      ],
+      "composition_rules": [
+        "slogan must be short",
+        "line breaks should improve rhythm",
+        "avoid more than two font styles",
+        "use icon only if it clarifies the niche",
+        "thumbnail readability is essential"
+      ],
+      "colour_rules": [
+        "black/white/cream high contrast",
+        "one accent colour optional",
+        "works on most shirt colours if contrast is checked"
+      ],
+      "commercial_strength": "High when wording is strong",
+      "generic_risk": "Weak text makes the whole design weak.",
+      "anti_generic_moves": [
+        "cut filler words",
+        "make phrase more specific",
+        "use regional or niche vocabulary",
+        "use typographic contrast",
+        "avoid generic Canva-style layout"
+      ],
+      "prompt_note": "Use when the phrase does the selling."
+    },
+    "deadpan_typography": {
+      "display_name": "Deadpan Typography",
+      "description": "Dry, understated, text-led humour style where the restraint makes the joke sharper.",
+      "best_for": [
+        "sarcastic shirts",
+        "anti-social humour",
+        "millennial humour",
+        "neurodivergent humour",
+        "dad humour",
+        "office humour",
+        "introvert designs"
+      ],
+      "visual_traits": [
+        "plain typography",
+        "dry spacing",
+        "minimal graphics",
+        "understated hierarchy",
+        "deliberate lack of decoration"
+      ],
+      "composition_rules": [
+        "the wording must carry the joke",
+        "use quiet confidence",
+        "avoid decorative clutter",
+        "make the line break part of the timing"
+      ],
+      "colour_rules": [
+        "black, white, cream, grey",
+        "minimal palette",
+        "one ironic accent colour optional"
+      ],
+      "commercial_strength": "High for specific humour niches",
+      "generic_risk": "Can look lazy if the wording is not sharp enough.",
+      "anti_generic_moves": [
+        "make the phrase painfully specific",
+        "use anti-climax",
+        "use blunt timing",
+        "remove decorative support",
+        "avoid meme clichés"
+      ],
+      "prompt_note": "Use when understatement makes the joke stronger."
+    },
+    "retro_distressed_humour": {
+      "display_name": "Retro Distressed Humour",
+      "description": "Vintage print treatment applied to funny, niche-specific slogans or absurd visual ideas.",
+      "best_for": [
+        "dad humour",
+        "camping humour",
+        "food humour",
+        "hobby jokes",
+        "nostalgic parody",
+        "sports-like fake clubs",
+        "mushroom and foraging jokes"
+      ],
+      "visual_traits": [
+        "aged ink",
+        "fake club or event look",
+        "retro badge composition",
+        "distressed typography",
+        "warm palette"
+      ],
+      "composition_rules": [
+        "make it look like an old club shirt",
+        "use arched or stacked type",
+        "keep slogan short",
+        "use one central icon",
+        "avoid too much fake history text"
+      ],
+      "colour_rules": [
+        "cream, ochre, rust, brown, olive, faded red",
+        "works on cream, black, forest green, heather grey, navy"
+      ],
+      "commercial_strength": "High for giftable humour",
+      "generic_risk": "Can become fake-vintage filler if the joke is not specific.",
+      "anti_generic_moves": [
+        "invent a funny fake organisation",
+        "use absurdly specific activity",
+        "add niche icon",
+        "use distressed texture sparingly",
+        "avoid generic 'since 1984' filler unless joke-based"
+      ],
+      "prompt_note": "Use when a joke benefits from looking like old merch from a fake club, team, or place."
+    },
+    "badge_emblem": {
+      "display_name": "Badge Emblem",
+      "description": "Structured emblem style using circles, shields, stamps, or crests for strong identity and group belonging.",
+      "best_for": [
+        "clubs",
+        "regional pride",
+        "outdoor groups",
+        "fake teams",
+        "hobby identities",
+        "family gift shirts",
+        "local pride",
+        "heritage-inspired designs"
+      ],
+      "visual_traits": [
+        "contained shape",
+        "balanced type around icon",
+        "emblem hierarchy",
+        "clear symbolic centre",
+        "print-safe structure"
+      ],
+      "composition_rules": [
+        "use badge only when belonging or identity matters",
+        "avoid default circle if another shape is stronger",
+        "keep text short",
+        "make icon instantly recognisable",
+        "do not cram too many words around the border"
+      ],
+      "colour_rules": [
+        "2-4 colours",
+        "cream/black plus one accent",
+        "works on black, navy, cream, forest green, burgundy"
+      ],
+      "commercial_strength": "High for identity groups",
+      "generic_risk": "Circular badges are overused if the centre icon and text are generic.",
+      "anti_generic_moves": [
+        "use unusual badge shape",
+        "add local or niche-specific detail",
+        "make text funny",
+        "avoid generic stars/laurels",
+        "use emblem logic only when it fits the buyer"
+      ],
+      "prompt_note": "Use for belonging, not just decoration."
+    },
+    "woodcut_illustration": {
+      "display_name": "Woodcut Illustration",
+      "description": "Handcrafted engraved or linocut-inspired style with strong texture, rustic authority, and outdoor appeal.",
+      "best_for": [
+        "nature",
+        "woodland",
+        "foraging",
+        "camping",
+        "heritage",
+        "folklore",
+        "animals",
+        "regional pride",
+        "craft niches"
+      ],
+      "visual_traits": [
+        "engraved lines",
+        "bold carved texture",
+        "rustic detail",
+        "high contrast",
+        "handmade feel"
+      ],
+      "composition_rules": [
+        "keep one main subject",
+        "avoid excessive fine lines",
+        "use strong negative space",
+        "pair well with simple serif or slab typography",
+        "make texture serve form"
+      ],
+      "colour_rules": [
+        "cream ink on dark shirt",
+        "black ink on cream shirt",
+        "earthy accents optional",
+        "works on forest green, black, cream, brown, burgundy"
+      ],
+      "commercial_strength": "High for nature and craft niches",
+      "generic_risk": "Can become overly detailed and lose thumbnail clarity.",
+      "anti_generic_moves": [
+        "simplify line density",
+        "choose iconic subject silhouette",
+        "add folklore or regional cue",
+        "use strong border or stamp if useful",
+        "avoid random forest clutter"
+      ],
+      "prompt_note": "Use when handmade authenticity and outdoor identity matter."
+    },
+    "grunge_halftone": {
+      "display_name": "Grunge Halftone",
+      "description": "Raw print-style aesthetic using halftone, rough texture, photocopy energy, and distressed contrast.",
+      "best_for": [
+        "punk humour",
+        "streetwear",
+        "skate",
+        "music-inspired designs",
+        "political or protest aesthetics",
+        "dark humour",
+        "anti-clean concepts"
+      ],
+      "visual_traits": [
+        "halftone shading",
+        "rough edges",
+        "photocopy texture",
+        "distressed contrast",
+        "imperfect ink",
+        "zine-like feel"
+      ],
+      "composition_rules": [
+        "use texture to add attitude",
+        "avoid muddy mush",
+        "keep text readable",
+        "use bold focal point",
+        "allow asymmetry"
+      ],
+      "colour_rules": [
+        "black, white, red, yellow, acid green",
+        "high contrast",
+        "works well on black, white, grey"
+      ],
+      "commercial_strength": "High for alt and youth niches",
+      "generic_risk": "Texture can hide weak concept or destroy readability.",
+      "anti_generic_moves": [
+        "limit texture to shadows or background",
+        "make phrase aggressive or deadpan",
+        "use photocopy contrast intentionally",
+        "avoid over-layering",
+        "keep one visual punchline"
+      ],
+      "prompt_note": "Use when clean design would make the concept too tame."
+    },
+    "punk_zine": {
+      "display_name": "Punk Zine",
+      "description": "DIY collage-inspired style with rough typography, cutout energy, irreverence, and anti-polished personality.",
+      "best_for": [
+        "anti-establishment humour",
+        "music culture",
+        "skate culture",
+        "zine aesthetics",
+        "political satire",
+        "alt identity",
+        "rough joke shirts"
+      ],
+      "visual_traits": [
+        "cutout typography",
+        "rough collage",
+        "sticker energy",
+        "photocopy imperfection",
+        "raw layout",
+        "deliberate ugliness"
+      ],
+      "composition_rules": [
+        "allow controlled chaos",
+        "make the main phrase readable",
+        "use rough framing",
+        "avoid too many competing focal points",
+        "let imperfection feel intentional"
+      ],
+      "colour_rules": [
+        "black and white",
+        "red accent",
+        "yellow accent",
+        "acid green optional",
+        "works on black, white, grey"
+      ],
+      "commercial_strength": "Moderate to high for alt niches",
+      "generic_risk": "Can look messy rather than designed if hierarchy fails.",
+      "anti_generic_moves": [
+        "make slogan sharper",
+        "use one dominant phrase",
+        "create clear visual hierarchy",
+        "use roughness with purpose",
+        "avoid random collage filler"
+      ],
+      "prompt_note": "Use when polish would weaken the design's attitude."
+    },
+    "kawaii_pastel": {
+      "display_name": "Kawaii Pastel",
+      "description": "Cute pastel style with soft shapes, expressive characters, giftability, and playful sweetness.",
+      "best_for": [
+        "cute animals",
+        "wholesome gifts",
+        "soft goth contrast",
+        "food characters",
+        "cozy hobbies",
+        "cute mushroom designs",
+        "lighthearted humour"
+      ],
+      "visual_traits": [
+        "rounded forms",
+        "soft colours",
+        "cute expression",
+        "simple highlights",
+        "friendly shapes",
+        "charm-first design"
+      ],
+      "composition_rules": [
+        "large expressive subject",
+        "minimal background",
+        "use small cute props sparingly",
+        "keep text very short",
+        "avoid overstuffed cuteness"
+      ],
+      "colour_rules": [
+        "pastel pink, mint, lavender, sky blue, cream",
+        "works on white, cream, pastel shirts, black if outlined",
+        "avoid low contrast pastel-on-pastel text"
+      ],
+      "commercial_strength": "High for giftable cute niches",
+      "generic_risk": "Can become sugary and forgettable without a twist.",
+      "anti_generic_moves": [
+        "add deadpan slogan",
+        "combine cute art with dark humour",
+        "use unexpected expression",
+        "make niche specific",
+        "avoid generic smiling blob"
+      ],
+      "prompt_note": "Use when softness and charm are the selling point."
+    },
+    "dark_cute": {
+      "display_name": "Dark Cute",
+      "description": "Cute subject matter with dark humour, gothic elements, or unsettling contrast.",
+      "best_for": [
+        "alt gifts",
+        "goth cute",
+        "dark humour",
+        "cute animals with attitude",
+        "witchy niches",
+        "spooky season",
+        "mental health-adjacent dark jokes"
+      ],
+      "visual_traits": [
+        "cute character",
+        "dark palette",
+        "small gothic details",
+        "sweet-but-wrong tone",
+        "expressive eyes",
+        "playful menace"
+      ],
+      "composition_rules": [
+        "let contrast between cute and dark carry the hook",
+        "keep the subject readable",
+        "avoid overcomplicated horror detail",
+        "use short text if any",
+        "make the mood immediately obvious"
+      ],
+      "colour_rules": [
+        "black, purple, bone, muted pink, blood red, silver",
+        "works best on black, charcoal, burgundy, purple",
+        "use pastel accents sparingly"
+      ],
+      "commercial_strength": "High for alt gift niches",
+      "generic_risk": "Can become generic spooky cute if the joke is too broad.",
+      "anti_generic_moves": [
+        "make the slogan more deadpan",
+        "use niche-specific dark object",
+        "avoid generic skull-plus-cute formula",
+        "make expression specific",
+        "balance cute and sinister"
+      ],
+      "prompt_note": "Use when the emotional hook is contrast."
+    },
+    "regional_pride": {
+      "display_name": "Regional Pride",
+      "description": "Identity-led style built around place, language, symbols, folk cues, flags, local humour, and belonging.",
+      "best_for": [
+        "Welsh identity",
+        "local pride",
+        "regional humour",
+        "language slogans",
+        "heritage designs",
+        "national identity",
+        "place-based gift shirts"
+      ],
+      "visual_traits": [
+        "strong symbols",
+        "bold type",
+        "heritage colour cues",
+        "flag-aware palette",
+        "local visual codes",
+        "confident identity signal"
+      ],
+      "composition_rules": [
+        "make the place identity obvious",
+        "use symbols carefully and intentionally",
+        "avoid tourist-gift blandness",
+        "use local language correctly",
+        "keep slogan readable"
+      ],
+      "colour_rules": [
+        "use culturally relevant colours",
+        "for Welsh designs: red, white, green, black, gold, cream",
+        "works on black, white, cream, forest green, burgundy, navy",
+        "high contrast required"
+      ],
+      "commercial_strength": "High when identity signal is strong",
+      "generic_risk": "Can become tourist souvenir art if too obvious or bland.",
+      "anti_generic_moves": [
+        "use sharper slogan",
+        "combine local symbol with modern style",
+        "avoid generic flag slap-on",
+        "use local humour",
+        "make it wearable for locals not tourists"
+      ],
+      "prompt_note": "Use when belonging is the product."
+    },
+    "premium_symbolic": {
+      "display_name": "Premium Symbolic",
+      "description": "High-end minimal symbol style for clean apparel, subtle identity, and understated confidence.",
+      "best_for": [
+        "premium merch",
+        "small chest prints",
+        "symbol-only shirts",
+        "nature identity",
+        "quiet luxury-inspired designs",
+        "minimal subculture signals"
+      ],
+      "visual_traits": [
+        "single strong symbol",
+        "precise spacing",
+        "minimal typography",
+        "restrained colour",
+        "premium negative space",
+        "logo-like clarity"
+      ],
+      "composition_rules": [
+        "one idea only",
+        "avoid decorative clutter",
+        "use balance and spacing",
+        "small mark or centred symbol can work",
+        "make symbol meaningful"
+      ],
+      "colour_rules": [
+        "black, cream, white, navy, sage, charcoal",
+        "one-colour or two-colour ideal",
+        "subtle accent only if meaningful"
+      ],
+      "commercial_strength": "Moderate to high",
+      "generic_risk": "Can become bland if the symbol has no niche meaning.",
+      "anti_generic_moves": [
+        "choose a symbol insiders recognise",
+        "use clever negative space",
+        "make shape distinctive",
+        "avoid generic icon-pack feel",
+        "pair with very short text if needed"
+      ],
+      "prompt_note": "Use when subtle identity is stronger than loud graphics."
+    },
+    "earthy_badge": {
+      "display_name": "Earthy Badge",
+      "description": "Natural, rustic badge style for outdoors, foraging, slow living, farming, camping, and woodland niches.",
+      "best_for": [
+        "mushroom foraging",
+        "camping",
+        "woodland",
+        "homesteading",
+        "gardening",
+        "slow living",
+        "campfire culture",
+        "nature clubs"
+      ],
+      "visual_traits": [
+        "organic badge shapes",
+        "earth tones",
+        "rustic icon",
+        "soft distress",
+        "natural textures",
+        "calm outdoor feel"
+      ],
+      "composition_rules": [
+        "use simple central nature icon",
+        "avoid overcrowding the badge",
+        "use arched text sparingly",
+        "make it feel like real outdoor merch",
+        "allow hand-drawn imperfection"
+      ],
+      "colour_rules": [
+        "sage, cream, brown, rust, olive, forest green",
+        "works on cream, sage, forest green, black, heather grey",
+        "avoid neon"
+      ],
+      "commercial_strength": "High for nature and gift niches",
+      "generic_risk": "Can become generic Etsy cottagecore if no sharp hook.",
+      "anti_generic_moves": [
+        "add specific activity",
+        "use a funny club name",
+        "make icon less generic",
+        "use regional or seasonal cue",
+        "avoid overused leaf wreaths"
+      ],
+      "prompt_note": "Use when the buyer wants earthy identity, not loud novelty."
+    },
+    "y2k_glitch": {
+      "display_name": "Y2K Glitch",
+      "description": "Late-90s/early-2000s digital, chrome, glitch, sticker, and internet-culture style.",
+      "best_for": [
+        "gaming",
+        "internet humour",
+        "retro tech",
+        "rave aesthetics",
+        "cyber irony",
+        "teen/young adult niches",
+        "nostalgia designs"
+      ],
+      "visual_traits": [
+        "chrome accents",
+        "glitch shapes",
+        "pixel fragments",
+        "bold digital type",
+        "sticker layering",
+        "electric colour"
+      ],
+      "composition_rules": [
+        "keep focal point readable",
+        "use glitch as accent not clutter",
+        "make typography clear",
+        "allow asymmetry",
+        "avoid fake UI unless requested"
+      ],
+      "colour_rules": [
+        "silver, cyan, pink, lime, black, white, purple",
+        "works on black, white, navy, bright colours",
+        "high contrast required"
+      ],
+      "commercial_strength": "Moderate to high for youth and nostalgia niches",
+      "generic_risk": "Can become messy tech noise without a clear hook.",
+      "anti_generic_moves": [
+        "use one bold phrase",
+        "use glitch sparingly",
+        "make subject iconic",
+        "avoid meaningless cyber shapes",
+        "tie style to actual niche"
+      ],
+      "prompt_note": "Use when digital nostalgia or internet identity is the point."
+    },
+    "cottagecore_folk": {
+      "display_name": "Cottagecore Folk",
+      "description": "Soft folk-inspired natural style with botanical forms, gentle palettes, handmade charm, and slow-living appeal.",
+      "best_for": [
+        "mushrooms",
+        "gardening",
+        "bees",
+        "herbs",
+        "foraging",
+        "witchy nature",
+        "bookish gifts",
+        "slow living"
+      ],
+      "visual_traits": [
+        "botanical linework",
+        "soft natural forms",
+        "folk ornament",
+        "warm handmade feel",
+        "gentle texture",
+        "organic spacing"
+      ],
+      "composition_rules": [
+        "avoid overfilling with plants",
+        "use one central botanical subject",
+        "allow frame or wreath if not generic",
+        "use soft serif or hand-lettering",
+        "keep text short"
+      ],
+      "colour_rules": [
+        "cream, sage, moss, brown, muted yellow, dusty pink",
+        "works on cream, sage, forest green, heather grey",
+        "avoid harsh neon"
+      ],
+      "commercial_strength": "High for soft nature gift niches",
+      "generic_risk": "Can become generic botanical art if not tied to humour or identity.",
+      "anti_generic_moves": [
+        "add specific foraging or witchy cue",
+        "use sharper phrase",
+        "avoid generic wreath",
+        "make subject recognisable",
+        "use folk detail sparingly"
+      ],
+      "prompt_note": "Use when softness, nature, and handmade identity matter."
+    }
+  },
+  "negative_generation_rules": {
+    "avoid": [
+      "generic AI mush textures",
+      "hyper-detailed clutter",
+      "floating random objects",
+      "muddy lighting",
+      "overly cinematic framing when not requested",
+      "tiny unreadable text",
+      "low contrast compositions",
+      "generic mascot pose",
+      "default badge layout for every idea",
+      "decorative elements that do not support the hook",
+      "workflow formatting inside artwork"
+    ],
+    "if_detected": {
+      "recommended_action": "Use /simplify, /bolder, /style, or /text depending on the biggest issue."
+    }
+  },
+  "thumbnail_rules": {
+    "purpose": "Ensure marketplace readability at small sizes.",
+    "rules": [
+      "Main subject should remain recognisable at thumbnail size.",
+      "Typography should remain readable on mobile.",
+      "Avoid edge crowding.",
+      "Keep one dominant focal point.",
+      "Small details must support the main hook.",
+      "Texture must not destroy readability.",
+      "Buyer signal should be obvious quickly."
+    ]
+  },
+  "print_rules": {
+    "purpose": "Ensure artwork remains POD-safe and wearable.",
+    "rules": [
+      "Avoid accidental giant rectangular backgrounds.",
+      "Avoid excessive transparency gradients.",
+      "Prefer cleanly contained artwork unless a shirt-ready poster crop is intentional.",
+      "Keep artwork visually balanced on shirt canvas.",
+      "Optimise for chosen shirt colour, not always black.",
+      "Use strong contrast between artwork and shirt.",
+      "Avoid fine details that will vanish in print.",
+      "Keep typography large enough to read."
+    ]
+  },
+  "style_render_separation": {
+    "core_rule": "Style profiles describe the apparel artwork only. They must never cause workflow menus, stage labels, commands, system notes, or response formatting to appear inside generated artwork unless explicitly requested as the design concept.",
+    "style_language_is_for": [
+      "visual treatment of the T-shirt artwork",
+      "composition",
+      "line quality",
+      "colour palette",
+      "texture",
+      "typography",
+      "audience fit",
+      "commercial positioning"
+    ],
+    "style_language_is_not_for": [
+      "workflow controls",
+      "stage labels",
+      "numbered menus",
+      "instructional overlays",
+      "internal prompts",
+      "export instructions"
+    ],
+    "image_generation_rule": "When applying a style profile, render only the standalone POD apparel graphic and use one concise exclusion phrase if needed."
+  },
+  "style_prompt_sanitisation": {
+    "required": true,
+    "steps": [
+      "Use style profile terms only as art-direction language.",
+      "Remove workflow formatting before image generation.",
+      "Remove stage labels, menus, commands, numbered actions, status text, and export instructions.",
+      "Keep only subject, audience, hook, style, composition, typography, colours, and POD wearability.",
+      "Use one concise workflow/interface exclusion phrase if needed."
+    ],
+    "positive_prompt_bias": "Most of the prompt should describe the desired visual result, not forbidden elements."
+  },
+  "style_recommendation_response": {
+    "default_rule": "When recommending styles, give 2-3 strong options with a short reason. Do not dump the entire style list.",
+    "format": [
+      "Best style: {style_name} — {reason}",
+      "Alternative: {style_name} — {reason}",
+      "Wildcard: {style_name} — {reason}"
+    ],
+    "include_when_useful": [
+      "shirt colour suggestion",
+      "palette direction",
+      "composition direction",
+      "why this avoids generic AI output"
+    ]
+  },
+  "success_definition": {
+    "style_success": [
+      "commercially wearable",
+      "visually readable",
+      "strong buyer signal",
+      "clear emotional or humour hook",
+      "good marketplace thumbnail performance",
+      "distinct from generic AI POD output",
+      "style fits the niche",
+      "colour supports the shirt",
+      "typography is readable if present",
+      "artwork-only output with no accidental workflow contamination"
+    ]
+  }
+}

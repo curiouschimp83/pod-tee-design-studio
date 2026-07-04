@@ -1,0 +1,936 @@
+{
+  "name": "POD GPT Metadata Rules",
+  "version": "8.0",
+  "purpose": "Controls POD marketplace title generation, descriptions, SEO tags, audience targeting, gift positioning, commercial metadata strategy, metadata safety, and prevention of workflow/system language leaking into buyer-facing listing copy.",
+  "core_rule": "Metadata should make the design easier to find, easier to understand, and more compelling to the right buyer without sounding robotic, spammy, misleading, generic, or contaminated by workflow/system language.",
+  "metadata_render_separation": {
+    "core_rule": "Workflow text is for conversation only and must never be used as listing metadata unless the user explicitly asks for a meta/workflow-themed product.",
+    "exclude_from_metadata": [
+      "Stage",
+      "Status",
+      "Next",
+      "Choose your next step",
+      "Recommended",
+      "slash commands",
+      "numbered workflow actions",
+      "workflow menu labels",
+      "system instructions",
+      "prompt instructions",
+      "render prompt",
+      "dashboard wording",
+      "UI wording",
+      "software interface wording",
+      "export instructions",
+      "internal notes"
+    ],
+    "metadata_should_describe": [
+      "the final apparel design",
+      "the actual buyer audience",
+      "the humour or emotional hook",
+      "the niche",
+      "the identity signal",
+      "the gift angle",
+      "the visual style",
+      "the intended vibe"
+    ],
+    "metadata_should_not_describe": [
+      "the internal workflow",
+      "the image prompt",
+      "the generation process",
+      "the export process",
+      "the assistant's system logic"
+    ]
+  },
+  "global_rules": {
+    "prioritise": [
+      "clear search intent",
+      "human readability",
+      "commercial relevance",
+      "identity signalling",
+      "niche clarity",
+      "giftability",
+      "accurate design description",
+      "buyer-facing language",
+      "natural marketplace phrasing",
+      "specificity over broad filler"
+    ],
+    "avoid": [
+      "keyword stuffing",
+      "repeating the same phrase excessively",
+      "misleading tags",
+      "generic filler words",
+      "spammy formatting",
+      "irrelevant trending terms",
+      "workflow terminology",
+      "slash commands",
+      "stage labels",
+      "system prompt language",
+      "prompt-construction language",
+      "UI or dashboard terminology unless the design is actually about UI",
+      "fake legal certainty",
+      "fake affiliation claims",
+      "thin generic titles"
+    ],
+    "tone": "natural, buyer-facing, commercially aware, concise, niche-specific",
+    "title_length_target": "40-90 characters preferred",
+    "description_style": "short, readable, benefit-oriented, audience-aware",
+    "tag_strategy": "mix broad search phrases, niche phrases, buyer identity phrases, style terms, and gift phrases",
+    "specificity_rule": "A smaller but clearer buyer is usually better than vague broad appeal.",
+    "commercial_rule": "Metadata should sell the identity or joke, not merely describe the image."
+  },
+  "metadata_pipeline": {
+    "order": [
+      "identify final or provisional design concept",
+      "remove workflow/system/prompt language",
+      "identify buyer audience",
+      "identify primary niche",
+      "identify emotional, humour, or identity hook",
+      "identify gift angle if relevant",
+      "identify visual style",
+      "identify searchable buyer phrases",
+      "build title",
+      "build description",
+      "build tags",
+      "check for repetition",
+      "check for marketplace or rights risk",
+      "check that metadata sounds buyer-facing",
+      "optimise for marketplace readability"
+    ],
+    "sanitisation_required": [
+      "Remove stage labels.",
+      "Remove slash commands.",
+      "Remove numbered actions.",
+      "Remove internal workflow labels.",
+      "Remove prompt-construction language.",
+      "Remove export instructions.",
+      "Remove UI/interface terms unless they are part of the actual design concept.",
+      "Rewrite any system-like phrasing into buyer-facing listing language."
+    ],
+    "quality_gate": [
+      "Would a real buyer search this phrase?",
+      "Would the title make sense without seeing the prompt?",
+      "Does the description explain who it is for?",
+      "Are the tags relevant rather than reach-farming?",
+      "Does the metadata avoid protected names unless the user has rights?",
+      "Does it avoid sounding like AI generated listing filler?"
+    ]
+  },
+  "title_rules": {
+    "purpose": "Generate clickable, searchable POD titles that clearly identify the buyer, niche, hook, or visual style.",
+    "must_include": [
+      "core niche or concept",
+      "main emotional, identity, or humour hook"
+    ],
+    "should_include_when_relevant": [
+      "audience",
+      "identity phrase",
+      "gift angle",
+      "style descriptor",
+      "shirt type",
+      "regional or hobby cue"
+    ],
+    "avoid": [
+      "overly long titles",
+      "all caps unless stylistically justified",
+      "excess punctuation",
+      "random keyword chains",
+      "slash commands",
+      "workflow stages",
+      "system labels",
+      "UI labels",
+      "prompt wording",
+      "copyright bait",
+      "fake brand references",
+      "misleading affiliation claims"
+    ],
+    "good_patterns": [
+      "{identity} {concept} T-Shirt",
+      "{humour_hook} Graphic Tee",
+      "{niche} Vintage Shirt",
+      "{audience} Statement Tee",
+      "{style} {concept} Apparel",
+      "{specific_buyer} Gift Shirt",
+      "{regional_identity} Graphic Tee",
+      "{hobby} Funny Shirt",
+      "{short_slogan} T-Shirt"
+    ],
+    "title_style_guidance": {
+      "humour": "Lead with the funny phrase or the buyer identity.",
+      "identity": "Lead with the tribe, place, hobby, profession, or attitude.",
+      "visual_art": "Lead with the subject and style.",
+      "gift": "Lead with the buyer type and gift angle.",
+      "regional": "Use place/language terms naturally and accurately.",
+      "minimal": "Keep title clean, not keyword-stuffed."
+    },
+    "example_structures": [
+      "Welsh Pride Yma O Hyd Graphic Tee",
+      "Funny Mushroom Foraging Vintage Shirt",
+      "Camping Dad Campfire Graphic Tee",
+      "Minimal Koi Fish Japanese Style Shirt",
+      "Dark Cute Cat Gothic Gift Tee",
+      "Introvert Deadpan Typography Shirt",
+      "Retro Hiking Club Outdoor T-Shirt",
+      "Funny Beekeeper Honey Gift Shirt"
+    ],
+    "weak_title_patterns": [
+      "Cool Funny Design Shirt",
+      "Awesome Graphic Tee",
+      "Vintage Retro Cool T-Shirt",
+      "Funny Gift For Everyone",
+      "Unique Design Apparel",
+      "AI Generated Graphic Shirt"
+    ]
+  },
+  "description_rules": {
+    "purpose": "Create concise marketplace descriptions that reinforce buyer identity, humour, style, wearability, and giftability.",
+    "target_length": "1-3 short paragraphs",
+    "must_focus_on": [
+      "who the design is for",
+      "what emotional, humour, or identity value it provides",
+      "why the design is wearable",
+      "why it makes sense as a gift when relevant"
+    ],
+    "should_mention": [
+      "style",
+      "occasion",
+      "niche culture",
+      "visual vibe",
+      "shirt colour compatibility when useful",
+      "target audience"
+    ],
+    "avoid": [
+      "technical art descriptions",
+      "obvious filler",
+      "keyword spam",
+      "fake urgency",
+      "workflow explanations",
+      "prompt language",
+      "internal production notes",
+      "mentions of commands or stages",
+      "overpromising quality",
+      "over-explaining the joke"
+    ],
+    "good_description_traits": [
+      "easy to scan",
+      "human sounding",
+      "commercially aware",
+      "emotionally aligned",
+      "specific to the buyer",
+      "not over-written"
+    ],
+    "description_angles": {
+      "humour": "Emphasise the joke, attitude, or relatable personality type.",
+      "identity": "Emphasise belonging, pride, place, hobby, or subculture.",
+      "gift": "Mention who it is a good gift for and why.",
+      "style": "Mention the visual style only if it helps the buyer understand the product.",
+      "minimal": "Keep the description restrained and premium.",
+      "vintage": "Mention retro feel, worn-print look, or old-school vibe without overdoing it."
+    },
+    "description_template_rules": [
+      "Open with the buyer or hook.",
+      "Explain the vibe in one sentence.",
+      "Add gift/use case if relevant.",
+      "Do not pad with generic marketplace filler."
+    ]
+  },
+  "tag_rules": {
+    "purpose": "Generate marketplace-friendly tags and search phrases that match real buyer intent.",
+    "tag_count_target": {
+      "redbubble": 15,
+      "teepublic": 10,
+      "etsy": 13,
+      "merch_by_amazon": 10
+    },
+    "tag_types": [
+      "core niche",
+      "identity phrase",
+      "humour phrase",
+      "style phrase",
+      "audience phrase",
+      "gift phrase",
+      "visual descriptor",
+      "culture reference",
+      "activity phrase",
+      "shirt colour or aesthetic phrase when useful"
+    ],
+    "rules": [
+      "Mix broad and niche tags.",
+      "Use phrases real buyers would search.",
+      "Prioritise relevance over reach.",
+      "Avoid repeating identical words excessively.",
+      "Avoid irrelevant tags for reach farming.",
+      "Avoid workflow/system labels as tags.",
+      "Avoid command names as tags unless the product is intentionally about commands.",
+      "Prefer multi-word buyer phrases over isolated generic single words.",
+      "Use the strongest niche terms first."
+    ],
+    "avoid": [
+      "single-word spam",
+      "generic unrelated trends",
+      "copyright bait",
+      "fake brand references",
+      "slash commands",
+      "stage names",
+      "workflow terminology",
+      "dashboard/interface terms unless directly relevant",
+      "celebrity or brand names without rights",
+      "unrelated pop-culture keywords",
+      "irrelevant holiday terms"
+    ],
+    "tag_quality_checks": [
+      "Would a buyer searching this tag be pleased to find this design?",
+      "Does the tag describe the design, audience, joke, style, or gift use?",
+      "Is the tag too broad to matter?",
+      "Does the tag create unnecessary rights risk?",
+      "Are there enough niche-specific phrases?"
+    ],
+    "tag_ordering_rule": "Start with the most relevant niche and buyer phrases, then broaden outward."
+  },
+  "audience_targeting": {
+    "purpose": "Clarify who the design is most likely to appeal to and avoid vague 'everyone' targeting.",
+    "common_audience_categories": [
+      "gamers",
+      "campers",
+      "hikers",
+      "foragers",
+      "mushroom lovers",
+      "gardeners",
+      "gym audience",
+      "metal fans",
+      "Welsh identity audience",
+      "regional pride audience",
+      "fathers",
+      "mothers",
+      "outdoor audience",
+      "anime fans",
+      "streetwear audience",
+      "alternative fashion",
+      "dog owners",
+      "cat owners",
+      "political identity groups",
+      "skate culture",
+      "retro nostalgia audience",
+      "reptile owners",
+      "pet lovers",
+      "gecko keepers",
+      "animal lovers",
+      "beekeepers",
+      "van life audience",
+      "coffee drinkers",
+      "introverts",
+      "neurodivergent humour audience",
+      "teachers",
+      "nurses",
+      "tradespeople",
+      "woodland and nature lovers"
+    ],
+    "rules": [
+      "Prefer strong identity targeting over generic targeting.",
+      "Emotionally tribal niches often convert better.",
+      "Giftable niches should be highlighted when appropriate.",
+      "Audience targeting should match the final artwork, not the workflow stage.",
+      "Use the buyer's own likely language where possible.",
+      "Do not target everyone unless the design is genuinely broad."
+    ],
+    "audience_output_rule": "Name the primary buyer first, then optional secondary audiences.",
+    "buyer_specificity_examples": {
+      "weak": "animal lovers",
+      "stronger": "gecko owners who like silly reptile humour",
+      "weak_2": "campers",
+      "stronger_2": "camping dads who treat campfire time like a sacred ritual",
+      "weak_3": "Welsh people",
+      "stronger_3": "Welsh pride audience who like bold identity-led statement tees"
+    }
+  },
+  "gift_angle_rules": {
+    "purpose": "Position suitable designs as gifts without making every listing sound like generic gift spam.",
+    "use_when": [
+      "audience is a recognisable person type",
+      "design fits birthdays, holidays, Father's Day, Mother's Day, Christmas, retirement, hobbies, or inside jokes",
+      "shirt works as a personality-based gift",
+      "niche has strong hobby identity"
+    ],
+    "avoid_when": [
+      "design is political or identity-heavy in a way that may not suit gifting",
+      "gift framing weakens the design's edge",
+      "the design is more fashion-led than gift-led",
+      "gift wording would feel spammy"
+    ],
+    "gift_phrase_patterns": [
+      "gift for {buyer}",
+      "{hobby} gift",
+      "funny {audience} shirt",
+      "{identity} birthday gift",
+      "{niche} Christmas gift",
+      "{profession} appreciation gift",
+      "Father's Day {hobby} shirt",
+      "Mother's Day {hobby} shirt"
+    ],
+    "gift_description_rule": "Mention giftability once, naturally. Do not force 'perfect gift' language repeatedly."
+  },
+  "marketplace_rules": {
+    "redbubble": {
+      "prioritise": [
+        "niche discoverability",
+        "strong tags",
+        "humour hooks",
+        "identity signalling",
+        "style descriptors",
+        "subculture search phrases"
+      ],
+      "avoid": [
+        "generic titles",
+        "weak tagging",
+        "workflow/system terms",
+        "irrelevant trending tags",
+        "rights-risk bait"
+      ],
+      "notes": "Redbubble benefits from strong niche tagging and visual style terms, but irrelevant tags weaken trust."
+    },
+    "etsy": {
+      "prioritise": [
+        "giftability",
+        "occasion targeting",
+        "long-tail phrases",
+        "buyer type",
+        "specific use case",
+        "clear product language"
+      ],
+      "avoid": [
+        "overly broad titles",
+        "irrelevant tags",
+        "internal workflow wording",
+        "thin descriptions",
+        "stuffed keyword strings"
+      ],
+      "notes": "Etsy metadata should sound like something a buyer would search when buying for themselves or someone specific."
+    },
+    "teepublic": {
+      "prioritise": [
+        "strong niche recognition",
+        "clear humour",
+        "graphic readability",
+        "fandom-adjacent but original phrasing",
+        "identity-led tags"
+      ],
+      "avoid": [
+        "unclear audience targeting",
+        "command or workflow language",
+        "too many broad tags",
+        "misleading protected references"
+      ],
+      "notes": "TeePublic works best when the buyer immediately understands the joke or niche identity."
+    },
+    "merch_by_amazon": {
+      "prioritise": [
+        "safe searchable phrases",
+        "clear audience targeting",
+        "clean readable titles",
+        "straightforward descriptions",
+        "lower rights risk"
+      ],
+      "avoid": [
+        "copyright-risk wording",
+        "trademark-risk wording",
+        "spammy metadata",
+        "workflow/system language",
+        "misleading brand references",
+        "celebrity names without rights",
+        "protected slogans"
+      ],
+      "notes": "Use safer generic descriptive phrases and avoid anything that implies affiliation with protected IP."
+    }
+  },
+  "commercial_logic": {
+    "high_performance_traits": [
+      "identity signalling",
+      "tribal belonging",
+      "inside jokes",
+      "gift potential",
+      "emotionally resonant slogans",
+      "clear humour",
+      "wearable aesthetics",
+      "strong buyer type",
+      "specific hobby language",
+      "regional pride",
+      "style-audience alignment"
+    ],
+    "weak_performance_traits": [
+      "generic concepts",
+      "unclear audience",
+      "confusing humour",
+      "spammy metadata",
+      "overly broad targeting",
+      "metadata that describes the workflow instead of the shirt",
+      "prompt-like product descriptions",
+      "titles that are just keyword chains",
+      "tags chosen for reach rather than relevance"
+    ],
+    "metadata_commercial_tests": [
+      "Can the buyer tell this is for them?",
+      "Does the title include the main hook?",
+      "Does the description make the design feel wearable?",
+      "Do the tags match real buyer searches?",
+      "Would this listing stand apart from generic POD spam?",
+      "Is the language natural enough to trust?"
+    ],
+    "oversaturation_response": "If the design is in a saturated niche, metadata should emphasise the sharper sub-angle, humour mode, style, or buyer identity."
+  },
+  "safe_mode_rules": {
+    "purpose": "Reduce legal and marketplace risk in metadata without falsely claiming legal safety.",
+    "avoid_when_possible": [
+      "direct copyrighted brand names",
+      "celebrity names",
+      "band names without rights",
+      "sports team names without rights",
+      "TV or film character names without rights",
+      "trademarked slogans",
+      "marketplace-restricted phrases",
+      "misleading affiliation claims",
+      "official-sounding product language",
+      "logo names without rights"
+    ],
+    "preferred_alternatives": [
+      "inspired-by mood without naming protected property",
+      "parody framing where genuinely transformative",
+      "descriptive references",
+      "generic niche wording",
+      "audience-first phrasing",
+      "original character or concept names",
+      "subculture category instead of protected name"
+    ],
+    "warning_rule": "Do not falsely claim legal safety. If there may be rights risk, say it may be risky and suggest a safer metadata route.",
+    "metadata_reframe_examples": {
+      "risky": "Metallica Logo Shirt",
+      "safer": "Heavy Metal Lightning Typography Shirt",
+      "risky_2": "Edward Scissorhands T-Shirt",
+      "safer_2": "Gothic Scissor-Handed Barber Horror Parody Tee",
+      "risky_3": "The Goldbergs Swish Baby Shirt",
+      "safer_3": "Retro Basketball Catchphrase Comedy Tee"
+    }
+  },
+  "seo_logic": {
+    "purpose": "Improve marketplace search visibility without damaging readability or sounding spammy.",
+    "rules": [
+      "Use natural search phrases.",
+      "Front-load important niche terms in titles.",
+      "Use audience-relevant keywords.",
+      "Balance broad and niche discoverability.",
+      "Avoid metadata that reads like a prompt or workflow log.",
+      "Avoid dumping unrelated keywords.",
+      "Use style terms only when they help search or buyer comprehension.",
+      "Prefer phrases over isolated keyword fragments."
+    ],
+    "good_search_patterns": [
+      "{niche} shirt",
+      "{identity} tee",
+      "{style} graphic shirt",
+      "{audience} gift",
+      "{humour} shirt",
+      "funny {hobby} shirt",
+      "{regional_identity} t-shirt",
+      "{profession} gift tee",
+      "{animal} owner shirt",
+      "{outdoor_activity} vintage shirt"
+    ],
+    "seo_balance_rule": "The title should be searchable first, but still sound human.",
+    "tag_mix_formula": {
+      "broad": "2-4 broad category tags",
+      "niche": "5-8 specific niche or identity tags",
+      "style": "1-3 style tags",
+      "gift": "1-3 gift or occasion tags when relevant",
+      "visual": "1-3 visual subject tags"
+    }
+  },
+  "title_generation_logic": {
+    "purpose": "Produce stronger title options instead of one generic default.",
+    "default_output_count": 3,
+    "title_option_types": [
+      "search-led title",
+      "humour-led title",
+      "gift-led title"
+    ],
+    "rules": [
+      "Do not output nearly identical title options.",
+      "Make each title serve a different commercial angle.",
+      "Choose one recommended title.",
+      "Keep titles readable and marketplace-safe.",
+      "Avoid overloading titles with every keyword."
+    ],
+    "recommendation_rule": "Recommend the title that best balances search, clarity, and buyer pull."
+  },
+  "description_generation_logic": {
+    "purpose": "Create descriptions that sound natural and commercially useful.",
+    "default_output_count": 1,
+    "optional_variants": [
+      "short marketplace version",
+      "Etsy gift-focused version",
+      "Redbubble niche-focused version"
+    ],
+    "rules": [
+      "Start with the buyer or design hook.",
+      "Do not describe every visual element mechanically.",
+      "Mention the style only if commercially useful.",
+      "Mention giftability naturally if relevant.",
+      "Avoid fake urgency and generic filler.",
+      "Keep paragraphs short."
+    ]
+  },
+  "tag_generation_logic": {
+    "purpose": "Generate relevant tags, not keyword spam.",
+    "default_output": {
+      "redbubble_tags": 15,
+      "etsy_tags": 13,
+      "teepublic_tags": 10,
+      "amazon_tags": 10
+    },
+    "rules": [
+      "Tags should be lower-friction phrases a buyer might search.",
+      "Avoid protected terms unless the user has rights.",
+      "Avoid repeating the same root word too many times.",
+      "Do not include workflow or prompt words.",
+      "Do not include unrelated trending terms.",
+      "Use singular and plural only when both are genuinely useful."
+    ],
+    "tag_grouping_when_useful": [
+      "Core niche",
+      "Buyer identity",
+      "Humour angle",
+      "Style/aesthetic",
+      "Gift/occasion",
+      "Visual subject"
+    ]
+  },
+  "shirt_colour_metadata": {
+    "purpose": "Suggest commercially sensible shirt colours based on the final design and likely buyer.",
+    "rules": [
+      "Suggest 3-6 shirt colours unless user asks for one.",
+      "Prioritise contrast and style fit.",
+      "Include black only when it genuinely works.",
+      "Mention if a colour risks low contrast.",
+      "Avoid assuming every design belongs on black."
+    ],
+    "common_recommendations": {
+      "vintage": [
+        "cream",
+        "forest green",
+        "heather grey",
+        "navy",
+        "black"
+      ],
+      "metal_or_goth": [
+        "black",
+        "charcoal",
+        "burgundy",
+        "deep purple"
+      ],
+      "cute": [
+        "white",
+        "cream",
+        "pastel pink",
+        "pastel blue",
+        "lavender"
+      ],
+      "outdoor": [
+        "forest green",
+        "cream",
+        "sage",
+        "heather grey",
+        "brown"
+      ],
+      "typography": [
+        "black",
+        "white",
+        "cream",
+        "heather grey",
+        "navy"
+      ],
+      "welsh_identity": [
+        "black",
+        "white",
+        "forest green",
+        "burgundy",
+        "red",
+        "cream"
+      ]
+    }
+  },
+  "metadata_templates": {
+    "basic_template": {
+      "title": "{main_hook} Graphic Tee",
+      "description": "A wearable graphic tee for {audience}, built around {hook}. Designed with a clear visual style and a strong niche signal.",
+      "tags": [
+        "{core_niche}",
+        "{buyer_identity}",
+        "{style}",
+        "{humour_or_hook}",
+        "{gift_phrase}"
+      ]
+    },
+    "identity_template": {
+      "title": "{identity_phrase} Statement Shirt",
+      "description": "Designed for people who strongly identify with {identity}. A clear wearable design with a strong visual signal and niche-specific appeal.",
+      "tags": [
+        "{identity}",
+        "{community}",
+        "{statement}",
+        "{culture}",
+        "{wearable_graphic}"
+      ]
+    },
+    "humour_template": {
+      "title": "{funny_phrase} Funny Graphic Tee",
+      "description": "A humour-led shirt for {audience}, built around a quick, readable joke and a wearable graphic style.",
+      "tags": [
+        "{humour}",
+        "{funny_gift}",
+        "{niche_joke}",
+        "{graphic_tee}",
+        "{audience}"
+      ]
+    },
+    "gift_template": {
+      "title": "Funny {audience} Gift Shirt",
+      "description": "A giftable graphic tee for {audience}. Works well for birthdays, holidays, or anyone who recognises the joke.",
+      "tags": [
+        "{audience_gift}",
+        "{niche_gift}",
+        "{funny_shirt}",
+        "{hobby}",
+        "{identity}"
+      ]
+    },
+    "vintage_template": {
+      "title": "{niche} Vintage Graphic Shirt",
+      "description": "A retro-inspired graphic tee for {audience}, with a worn-print feel and a clear niche hook.",
+      "tags": [
+        "{niche}",
+        "vintage {niche}",
+        "retro shirt",
+        "{audience}",
+        "{gift_phrase}"
+      ]
+    },
+    "regional_template": {
+      "title": "{regional_identity} Graphic Tee",
+      "description": "A bold regional pride design for {audience}, built around {symbol_or_phrase} and a strong wearable identity signal.",
+      "tags": [
+        "{region}",
+        "{regional_identity}",
+        "{local_phrase}",
+        "{identity}",
+        "{statement_shirt}"
+      ]
+    }
+  },
+  "generation_rules": {
+    "if_user_requests_metadata_only": {
+      "behaviour": "Generate marketplace-ready listing content without redesign discussion."
+    },
+    "if_design_not_finalised": {
+      "behaviour": "Use provisional metadata and state briefly that final metadata should be checked against the approved artwork."
+    },
+    "if_niche_unclear": {
+      "behaviour": "Infer likely audience from design concept where reasonable, but do not over-target without evidence."
+    },
+    "if_workflow_terms_present": {
+      "behaviour": "Remove workflow terms before generating metadata unless the user explicitly wants a workflow-themed product."
+    },
+    "if_preview_was_ui_contaminated": {
+      "behaviour": "Do not generate final metadata from the contaminated preview. Use the intended apparel concept only, or request a valid approved artwork direction."
+    },
+    "if_slogan_is_weak": {
+      "behaviour": "Suggest stronger slogan options before final metadata when the text materially affects commercial strength."
+    },
+    "if_concept_is_rights_risky": {
+      "behaviour": "Flag the risk and provide safer metadata alternatives without claiming legal certainty."
+    },
+    "if_user_has_platform_preference": {
+      "behaviour": "Prioritise that platform's metadata structure and tag count."
+    },
+    "if_no_platform_specified": {
+      "behaviour": "Provide general POD metadata suitable for Redbubble/Etsy/TeePublic, with tags that can be adapted."
+    }
+  },
+  "metadata_contamination_checks": {
+    "purpose": "Prevent internal workflow language from appearing in customer-facing listing copy.",
+    "fail_terms": [
+      "Stage:",
+      "Status:",
+      "Next:",
+      "Choose your next step",
+      "Recommended:",
+      "/preview",
+      "/approve",
+      "/generate",
+      "/export",
+      "/metadata",
+      "/brief",
+      "/audit",
+      "workflow",
+      "dashboard",
+      "UI",
+      "screenshot",
+      "prompt",
+      "render prompt",
+      "system instruction",
+      "export pipeline",
+      "Code Interpreter",
+      "sandbox link",
+      "/mnt/data"
+    ],
+    "required_behaviour_if_detected": [
+      "Remove the contaminated wording.",
+      "Rewrite the metadata as buyer-facing listing copy.",
+      "Focus on the final artwork and target audience.",
+      "Do not expose internal workflow terms.",
+      "Check the title, description, and tags again before output."
+    ]
+  },
+  "metadata_quality_checks": {
+    "before_completion": [
+      "Title readable?",
+      "Title searchable?",
+      "Audience clear?",
+      "Primary niche clear?",
+      "Search phrases natural?",
+      "Tags relevant?",
+      "No obvious spam?",
+      "Commercial hook visible?",
+      "Gift angle natural if included?",
+      "No workflow/system language?",
+      "No prompt language?",
+      "No misleading rights-risk terms?",
+      "Suggested shirt colours make sense?"
+    ],
+    "fail_conditions": [
+      "title is just a keyword chain",
+      "description sounds like a prompt",
+      "tags are mostly broad filler",
+      "buyer is unclear",
+      "metadata targets the wrong niche",
+      "protected names used unnecessarily",
+      "workflow words appear",
+      "gift language is forced",
+      "style terms do not match the design"
+    ],
+    "fix_policy": "Fix the biggest commercial metadata issue first: unclear buyer, weak title, spammy tags, or rights risk."
+  },
+  "response_structure": {
+    "preferred_format": [
+      "Recommended Title",
+      "Alternative Titles",
+      "Description",
+      "Tags",
+      "Audience",
+      "Gift Angle",
+      "Suggested Shirt Colours"
+    ],
+    "compact_format": [
+      "Title",
+      "Description",
+      "Tags"
+    ],
+    "platform_specific_format": [
+      "Title",
+      "Bullet points or description if platform supports it",
+      "Tags",
+      "Audience",
+      "Notes"
+    ],
+    "optional_fields": [
+      "Primary niche",
+      "SEO angle",
+      "Marketplace notes",
+      "Rights-risk note",
+      "Slogan recommendation",
+      "Colourway notes"
+    ],
+    "format_rule": "Do not use tables unless the user asks. Tags may be comma-separated for easy copying."
+  },
+  "example_outputs": {
+    "humour_niche": {
+      "recommended_title": "Funny Mushroom Foraging Vintage Graphic Tee",
+      "description": "A retro-style foraging shirt for mushroom hunters, woodland wanderers, and anyone who treats a good fungi find like treasure. Designed with a worn vintage feel and a clear outdoorsy humour angle.",
+      "tags": [
+        "mushroom foraging",
+        "forager shirt",
+        "funny mushroom shirt",
+        "fungi lover",
+        "woodland shirt",
+        "foraging gift",
+        "vintage outdoor tee"
+      ],
+      "audience": "Mushroom foragers, woodland walkers, nature hobbyists",
+      "gift_angle": "Good gift for foragers, campers, hikers, and fungi lovers",
+      "suggested_shirt_colours": [
+        "cream",
+        "forest green",
+        "sage",
+        "heather grey",
+        "black"
+      ]
+    },
+    "regional_identity": {
+      "recommended_title": "Welsh Pride Yma O Hyd Statement Tee",
+      "description": "A bold Welsh identity shirt for people who wear their pride clearly. Built around a strong statement feel, national colours, and a clean graphic style that works as everyday apparel.",
+      "tags": [
+        "welsh pride",
+        "yma o hyd",
+        "wales shirt",
+        "welsh identity",
+        "cymru shirt",
+        "welsh gift",
+        "welsh statement tee"
+      ],
+      "audience": "Welsh pride and Welsh identity audience",
+      "gift_angle": "Good gift for proud Welsh speakers, rugby fans, and Cymru supporters",
+      "suggested_shirt_colours": [
+        "black",
+        "white",
+        "forest green",
+        "burgundy",
+        "cream"
+      ]
+    },
+    "deadpan_typography": {
+      "recommended_title": "Mentally At The Campsite Funny Camping Shirt",
+      "description": "A deadpan camping shirt for people who would rather be by the fire, in a field, or anywhere that is not real life. Simple, readable, and made for campers with dry humour.",
+      "tags": [
+        "camping shirt",
+        "funny camping tee",
+        "camping dad",
+        "campfire shirt",
+        "outdoor humour",
+        "camper gift",
+        "mentally camping"
+      ],
+      "audience": "Campers, camping dads, outdoor humour buyers",
+      "gift_angle": "Good gift for campers, dads, van-life people, and campfire obsessives",
+      "suggested_shirt_colours": [
+        "heather grey",
+        "forest green",
+        "cream",
+        "black",
+        "navy"
+      ]
+    }
+  },
+  "success_definition": {
+    "metadata_success": [
+      "easy to read",
+      "commercially relevant",
+      "searchable",
+      "identity-aware",
+      "not spammy",
+      "marketplace friendly",
+      "buyer-facing",
+      "specific enough to stand out",
+      "aligned with the final apparel artwork",
+      "free from workflow/system contamination",
+      "free from prompt-like language",
+      "clear about gift angle when relevant",
+      "honest about rights or marketplace risk where needed"
+    ]
+  }
+}
