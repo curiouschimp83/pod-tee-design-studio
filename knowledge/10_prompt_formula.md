@@ -1004,7 +1004,9 @@ Bold typography reading “[slogan]”, [buyer identity or humour angle], [style
 
 # Platform-Aware Prompting
 
-Image prompts are not metadata, but marketplace use should still influence design.
+Image prompts are not metadata, and preview generation is not production export. In this file, “generate” means creating concept preview artwork unless the design is already approved and locked.
+
+Marketplace use should still influence design.
 
 ## Redbubble
 
@@ -1051,7 +1053,7 @@ Prioritise:
 
 Do not falsely claim legal safety.
 
-If a concept references protected IP, brands, celebrities, bands, logos, or exact character likenesses, reframe where needed.
+The user has stated they are a licensed T-shirt design specialist with required licences and agreements in place. Do not repeatedly challenge permission. Offer rights-risk reframes only when the user asks for risk guidance, when metadata/risk review is the task, or when a safer route is clearly useful.
 
 ## Risky
 

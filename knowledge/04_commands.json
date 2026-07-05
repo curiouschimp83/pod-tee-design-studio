@@ -2,7 +2,7 @@
   "name": "POD Commands",
   "version": "8.0",
   "purpose": "Defines command routing, action-first UX, number input behaviour, natural-language mapping, artwork-only preview generation, creative sharpening, approval lock, export honesty, metadata routing, and recovery behaviour.",
-  "core_rule": "Commands are shortcuts. The main interface is natural guided conversation with only the most relevant next actions shown.",
+  "core_rule": "Commands are internal shortcuts and aliases. The visible interface is natural guided conversation with plain-English numbered choices only.",
   "command_render_separation": {
     "core_rule": "Commands, menus, workflow stages, numbered actions, status text, export notes, and response formatting are conversational controls only. They must never appear inside generated artwork unless the user explicitly requests UI, dashboard, software, app, browser, screenshot, or workflow-themed art.",
     "chat_only_elements": [
@@ -122,8 +122,8 @@
     "failure_rule": "If generated output accidentally contains workflow text, screenshots, dashboards, or interface elements, treat the preview as failed unless the user explicitly requested that style."
   },
   "action_format": {
-    "format": "{number}. {plain_english_action} {slash_command_optional} — {short explanation}",
-    "example": "1. Generate production PNG /generate — Create the real 4500 × 5400 transparent POD-ready PNG."
+    "format": "{number}. {plain_english_action} — {short explanation}",
+    "example": "1. Create production PNG — Create the real 4500 × 5400 transparent POD-ready PNG."
   },
   "commands": {
     "/start": {
@@ -263,8 +263,7 @@
         "make concept",
         "show me",
         "visualise it",
-        "make the image",
-        "generate"
+        "make the image"
       ]
     },
     "/thumbnail": {
@@ -275,7 +274,7 @@
         "APPROVED_ART_LOCKED",
         "EXPORT_READY"
       ],
-      "state_after": "REVIEWING",
+      "state_after": "REVIEWING_OR_APPROVED_ART_LOCKED_IF_ALREADY_LOCKED",
       "quality_review_mode": "thumbnail",
       "checks": [
         "small-size readability",
@@ -316,7 +315,7 @@
         "APPROVED_ART_LOCKED",
         "EXPORT_READY"
       ],
-      "state_after": "REVIEWING",
+      "state_after": "REVIEWING_OR_APPROVED_ART_LOCKED_IF_ALREADY_LOCKED",
       "quality_review_mode": "audit",
       "required_checks": [
         "commercial hook",
@@ -363,7 +362,7 @@
       "available_from": [
         "REVIEWING"
       ],
-      "state_after": "APPROVED_ART_LOCKED",
+      "state_after": "APPROVED_ART_LOCKED_THEN_EXPORTING",
       "activate_approved_art_lock": true,
       "preserve": [
         "composition",
@@ -403,6 +402,9 @@
       ],
       "rules": [
         "Activate Approved Art Lock immediately.",
+        "Create or preserve the locked design record.",
+        "Immediately move into export preparation and attempt final export when tools/source artwork are available.",
+        "If export succeeds, generate metadata automatically unless the user explicitly pauses.",
         "Do not offer alternative previews after approval.",
         "Do not creatively reinterpret approved artwork.",
         "Preserve the approved visual identity.",
@@ -638,7 +640,7 @@
       ]
     },
     "/generate": {
-      "plain_english_action": "Generate production PNG",
+      "plain_english_action": "Create production PNG",
       "purpose": "Create a real downloadable 4500 × 5400 transparent POD-ready PNG from approved or uploaded artwork.",
       "available_from": [
         "APPROVED_ART_LOCKED",
@@ -902,6 +904,9 @@
     }
   },
   "command_routing": {
+    "generate_word_routing": {
+      "rule": "Before approval, casual requests like 'generate it' usually mean concept preview. After approval or lock, 'generate', 'export', 'finalise', 'finalize', 'make final', or 'make the file' mean production export from the locked artwork."
+    },
     "approval_phrases": {
       "map_to": "/approve",
       "phrases": [
@@ -923,7 +928,6 @@
       "map_to": "/preview",
       "phrases": [
         "show me",
-        "generate it",
         "make it",
         "create it",
         "visualise it",
@@ -957,6 +961,8 @@
     "export_phrases": {
       "map_to": "/generate",
       "phrases": [
+        "generate",
+        "generate final",
         "make final",
         "export it",
         "make png",

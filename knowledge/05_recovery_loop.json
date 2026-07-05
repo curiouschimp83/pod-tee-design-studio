@@ -51,7 +51,7 @@
     "show relevant next actions",
     "recommend one best next step"
   ],
-  "standard_recovery_response_structure": [
+    "standard_recovery_response_structure": [
     "Stage: {likely_stage}",
     "Design: {known_design_summary}",
     "Status: {plain_status_explanation}",
@@ -82,7 +82,7 @@
       "then": "Display stage, design summary, status, relevant actions, and one recommendation."
     }
   },
-  "workflow_state_recovery": {
+    "workflow_state_recovery": {
     "purpose": "Recover when the workflow stage becomes unclear or interrupted.",
     "rules": [
       "Do not silently restart the workflow.",
@@ -114,20 +114,17 @@
       {
         "number": 2,
         "label": "Review brief",
-        "command": "/brief",
-        "description": "Confirm the design direction."
+        "description": "Confirm the design direction if the design is not locked."
       },
       {
         "number": 3,
-        "label": "Generate preview",
-        "command": "/preview",
-        "description": "Move back into visual development."
+        "label": "Continue locked export prep",
+        "description": "Use this when Approved Art Lock is active."
       },
       {
         "number": 4,
         "label": "Start over",
-        "command": "/reset",
-        "description": "Clear the current concept."
+        "description": "Clear the current concept only if not locked or explicitly requested."
       }
     ],
     "recommended": "Continue unless the design direction is genuinely unclear."
@@ -184,7 +181,6 @@
         {
           "number": 1,
           "label": "Unlock and redesign",
-          "command": "/unlock",
           "description": "Allow creative changes to the approved artwork."
         },
         {
@@ -195,7 +191,6 @@
         {
           "number": 3,
           "label": "Export approved version",
-          "command": "/generate",
           "description": "Create the production PNG from the approved artwork."
         }
       ],
@@ -240,72 +235,72 @@
       "too_busy": {
         "status": "Visual clutter is weakening thumbnail impact.",
         "why_it_matters": "Busy designs die in marketplace grids because the buyer cannot understand them quickly.",
-        "recommended_action": "Simplify it /simplify — Remove secondary detail and strengthen the main hook."
+        "recommended_action": "Simplify it — Remove secondary detail and strengthen the main hook."
       },
       "weak_silhouette": {
         "status": "The design needs a stronger recognisable shape before approval.",
         "why_it_matters": "A weak silhouette makes the design disappear at thumbnail size.",
-        "recommended_action": "Make it bolder /bolder — Strengthen outlines, contrast, and recognisable form."
+        "recommended_action": "Make it bolder — Strengthen outlines, contrast, and recognisable form."
       },
       "text_unreadable": {
         "status": "The typography is not readable enough at marketplace size.",
         "why_it_matters": "If the slogan cannot be read quickly, the joke or identity signal fails.",
-        "recommended_action": "Adjust text /text — Shorten the wording or improve hierarchy."
+        "recommended_action": "Adjust text — Shorten the wording or improve hierarchy."
       },
       "weak_slogan": {
         "status": "The slogan is too generic or not punchy enough.",
         "why_it_matters": "Weak wording turns a potentially good niche design into marketplace wallpaper.",
-        "recommended_action": "Sharpen the slogan /text — Create shorter, more niche-specific wording."
+        "recommended_action": "Sharpen the slogan — Create shorter, more niche-specific wording."
       },
       "generic_ai_style": {
         "status": "The design risks looking like generic AI POD art.",
         "why_it_matters": "Generic visuals struggle because they look interchangeable with thousands of existing designs.",
-        "recommended_action": "Change the style direction /style — Add a more specific niche aesthetic, texture, composition, or typography treatment."
+        "recommended_action": "Change the style direction — Add a more specific niche aesthetic, texture, composition, or typography treatment."
       },
       "generic_layout": {
         "status": "The layout feels too predictable.",
         "why_it_matters": "Default centred mascot or circular badge layouts can feel mass-produced unless the idea is unusually strong.",
-        "recommended_action": "Try another version /alt — Explore a more distinctive composition."
+        "recommended_action": "Try another version — Explore a more distinctive composition before approval."
       },
       "poster_layout": {
         "status": "The composition is too poster-like for the intended shirt format.",
         "why_it_matters": "Poster layouts can work, but only if cropped and simplified into a wearable shirt graphic.",
-        "recommended_action": "Simplify it /simplify — Keep the strongest narrative element but restore wearability."
+        "recommended_action": "Simplify it — Keep the strongest narrative element but restore wearability."
       },
       "low_contrast": {
         "status": "The design needs more contrast for quick scrolling visibility.",
         "why_it_matters": "Low contrast reduces thumbnail impact and weakens print clarity.",
-        "recommended_action": "Make it bolder /bolder — Improve contrast and focal hierarchy."
+        "recommended_action": "Make it bolder — Improve contrast and focal hierarchy."
       },
       "too_detailed": {
         "status": "Detail density is hurting readability and wearability.",
         "why_it_matters": "Tiny detail often looks impressive close-up but fails as a T-shirt graphic.",
-        "recommended_action": "Simplify it /simplify — Restore stronger visual hierarchy and cleaner negative space."
+        "recommended_action": "Simplify it — Restore stronger visual hierarchy and cleaner negative space."
       },
       "unclear_buyer": {
         "status": "The design does not clearly signal who it is for.",
         "why_it_matters": "POD designs sell better when the right buyer instantly feels targeted.",
-        "recommended_action": "Strengthen the brief /brief — Clarify audience, identity signal, and niche hook."
+        "recommended_action": "Strengthen the brief — Clarify audience, identity signal, and niche hook."
       },
       "weak_commercial_hook": {
         "status": "The design looks fine but lacks a strong reason to buy.",
         "why_it_matters": "Decorative designs need stronger aesthetics; humour and identity designs need stronger emotional pull.",
-        "recommended_action": "Commercial check /commercial — Find a sharper buyer angle or cross-niche hook."
+        "recommended_action": "Commercial check — Find a sharper buyer angle or cross-niche hook."
       },
       "style_mismatch": {
         "status": "The visual style does not fit the likely buyer.",
         "why_it_matters": "A good idea in the wrong aesthetic can miss the audience completely.",
-        "recommended_action": "Change style /style — Align the look with the niche culture."
+        "recommended_action": "Change style — Align the look with the niche culture."
       },
       "workflow_contamination": {
         "status": "The preview failed because workflow or interface elements appeared inside the generated image.",
         "why_it_matters": "Conversation controls are not valid apparel art unless deliberately requested as the concept.",
-        "recommended_action": "Retry artwork-only preview /preview — Regenerate with a cleaned apparel-only prompt."
+        "recommended_action": "Retry artwork-only preview — Regenerate with a cleaned apparel-only prompt before approval."
       },
       "screenshot_like_output": {
         "status": "The preview looks like an unintended screenshot or software interface instead of shirt artwork.",
         "why_it_matters": "This breaks the apparel-first design requirement unless the user explicitly wanted that style.",
-        "recommended_action": "Retry artwork-only preview /preview — Generate only the standalone apparel graphic."
+        "recommended_action": "Retry artwork-only preview — Generate only the standalone apparel graphic before approval."
       }
     },
     "if_preview_contains_workflow_or_interface_content": {
@@ -351,19 +346,16 @@
         {
           "number": 1,
           "label": "Retry preview",
-          "command": "/preview",
           "description": "Regenerate using a cleaned apparel-only prompt."
         },
         {
           "number": 2,
           "label": "Strengthen the brief",
-          "command": "/brief",
           "description": "Tighten the visual direction before retrying."
         },
         {
           "number": 3,
           "label": "Simplify the concept",
-          "command": "/simplify",
           "description": "Reduce visual complexity before retrying."
         }
       ],
@@ -373,19 +365,16 @@
       {
         "number": 1,
         "label": "Fix the main weakness",
-        "command": "/simplify",
         "description": "Improve the biggest issue while preserving the concept."
       },
       {
         "number": 2,
         "label": "Make it bolder",
-        "command": "/bolder",
         "description": "Strengthen contrast, silhouette, typography, or impact."
       },
       {
         "number": 3,
         "label": "Try another version",
-        "command": "/alt",
         "description": "Explore a different visual direction before approval."
       }
     ],
@@ -404,23 +393,23 @@
     "common_issues": {
       "too_long": {
         "status": "The slogan is too long for strong shirt readability.",
-        "recommended_action": "Shorten it /text — Cut it down to the core phrase."
+        "recommended_action": "Shorten it — Cut it down to the core phrase."
       },
       "too_generic": {
         "status": "The slogan is too generic.",
-        "recommended_action": "Sharpen it /text — Make it more specific to the niche or buyer identity."
+        "recommended_action": "Sharpen it — Make it more specific to the niche or buyer identity."
       },
       "weak_rhythm": {
         "status": "The wording does not have enough rhythm or punch.",
-        "recommended_action": "Rewrite it /text — Improve cadence, contrast, or comedic timing."
+        "recommended_action": "Rewrite it — Improve cadence, contrast, or comedic timing."
       },
       "not_wearable": {
         "status": "The slogan may work as a caption but not as something people would wear.",
-        "recommended_action": "Make it wearable /text — Use more natural buyer language."
+        "recommended_action": "Make it wearable — Use more natural buyer language."
       },
       "joke_unclear": {
         "status": "The joke is not clear fast enough.",
-        "recommended_action": "Clarify the joke /text — Remove extra setup and make the punchline immediate."
+        "recommended_action": "Clarify the joke — Remove extra setup and make the punchline immediate."
       }
     },
     "output_rule": "Provide 3-5 better options and identify the strongest one."
@@ -438,15 +427,15 @@
     "common_issues": {
       "unclear_audience": {
         "status": "The design does not clearly know who it is for.",
-        "recommended_action": "Clarify audience /brief — Choose a more specific buyer."
+        "recommended_action": "Clarify audience — Choose a more specific buyer."
       },
       "low_identity_signal": {
         "status": "The design lacks a strong identity signal.",
-        "recommended_action": "Strengthen hook /brief — Add niche language, symbols, or attitude."
+        "recommended_action": "Strengthen hook — Add niche language, symbols, or attitude."
       },
       "low_giftability": {
         "status": "The design is not obviously giftable.",
-        "recommended_action": "Add gift angle /metadata — Position it around a recognisable buyer type."
+        "recommended_action": "Add gift angle — Position it around a recognisable buyer type."
       },
       "oversaturated_angle": {
         "status": "The angle is likely too common.",
@@ -454,7 +443,7 @@
       },
       "style_not_market_fit": {
         "status": "The style does not match the target buyer.",
-        "recommended_action": "Change style /style — Align the aesthetic with the audience."
+        "recommended_action": "Change style — Align the aesthetic with the audience."
       }
     },
     "commercial_fix_patterns": [
@@ -495,19 +484,16 @@
       {
         "number": 1,
         "label": "Change style",
-        "command": "/style",
         "description": "Move away from generic vector output."
       },
       {
         "number": 2,
         "label": "Sharpen slogan",
-        "command": "/text",
         "description": "Make the wording more specific and wearable."
       },
       {
         "number": 3,
         "label": "Try another version",
-        "command": "/alt",
         "description": "Explore a more distinctive composition."
       }
     ]
@@ -529,29 +515,27 @@
       "transparency verified unless solid background requested",
       "sandbox link points to real file"
     ],
-    "if_python_unavailable": {
+      "if_python_unavailable": {
       "stage": "Export Blocked",
       "status": "I can’t create a real downloadable production file in this setup because Code Interpreter / Advanced Data Analysis is unavailable.",
       "menu": [
         {
           "number": 1,
-          "label": "Continue with preview work",
-          "command": "/preview",
-          "description": "Keep developing the design visually."
+          "label": "Retry when file tools are available",
+          "description": "Attempt the production PNG later while keeping the approved design locked."
         },
         {
           "number": 2,
-          "label": "Create metadata",
-          "command": "/metadata",
-          "description": "Prepare listing copy while export is unavailable."
+          "label": "Upload source artwork",
+          "description": "Provide the locked/final artwork for processing."
         },
         {
           "number": 3,
-          "label": "Get external export instructions",
-          "description": "Use another tool to create the final PNG."
+          "label": "Pause",
+          "description": "Stop without changing the approved design."
         }
       ],
-      "recommended": "Enable Code Interpreter for real file export, otherwise continue with metadata."
+      "recommended": "Enable the required file tools or upload source artwork. Keep Approved Art Lock active."
     },
     "if_no_artwork": {
       "stage": "Export Blocked",
@@ -564,18 +548,16 @@
         },
         {
           "number": 2,
-          "label": "Generate preview",
-          "command": "/preview",
-          "description": "Create standalone apparel artwork first."
+          "label": "Pause",
+          "description": "Stop until source artwork is available."
         },
         {
           "number": 3,
-          "label": "Return to brief",
-          "command": "/brief",
-          "description": "Build the design direction before previewing."
+          "label": "Review locked design record",
+          "description": "Confirm what should be preserved for export."
         }
       ],
-      "recommended": "Choose 1 if artwork already exists, otherwise choose 2."
+      "recommended": "Choose 1 if artwork already exists. If the design is locked, do not return to preview unless explicitly unlocked."
     },
     "if_artwork_not_approved": {
       "stage": "Export Blocked",
@@ -585,13 +567,11 @@
         {
           "number": 1,
           "label": "Approve current design",
-          "command": "/approve",
           "description": "Lock the artwork before export."
         },
         {
           "number": 2,
           "label": "Review current design",
-          "command": "/audit",
           "description": "Check quality before approval."
         },
         {
@@ -617,13 +597,11 @@
         {
           "number": 1,
           "label": "Retry export",
-          "command": "/generate",
           "description": "Run the transparent production export again."
         },
         {
           "number": 2,
           "label": "Export custom size",
-          "command": "/export",
           "description": "Try a specific transparent canvas size."
         },
         {
@@ -661,7 +639,6 @@
         {
           "number": 1,
           "label": "Retry transparency export",
-          "command": "/generate",
           "description": "Remove accidental background and retry export."
         },
         {
@@ -746,23 +723,23 @@
     "common_issues": {
       "too_generic": {
         "status": "The metadata is too broad and does not target the real buyer.",
-        "recommended_action": "Revise metadata /metadata — Make the title, tags, and description more niche-specific."
+        "recommended_action": "Revise metadata — Make the title, tags, and description more niche-specific."
       },
       "wrong_audience": {
         "status": "The metadata targets the wrong buyer.",
-        "recommended_action": "Retarget metadata /metadata — Align it with the actual audience."
+        "recommended_action": "Retarget metadata — Align it with the actual audience."
       },
       "keyword_stuffing": {
         "status": "The metadata sounds spammy.",
-        "recommended_action": "Rewrite metadata /metadata — Use natural buyer-facing language."
+        "recommended_action": "Rewrite metadata — Use natural buyer-facing language."
       },
       "workflow_language": {
         "status": "Workflow or prompt language appears in the metadata.",
-        "recommended_action": "Clean metadata /metadata — Rewrite as buyer-facing listing copy."
+        "recommended_action": "Clean metadata — Rewrite as buyer-facing listing copy."
       },
       "weak_title": {
         "status": "The title is not clickable or searchable enough.",
-        "recommended_action": "Improve title /metadata — Front-load the niche and main hook."
+        "recommended_action": "Improve title — Front-load the niche and main hook."
       }
     }
   },
@@ -794,10 +771,10 @@
       "Do not strip away niche identity when simplifying."
     ],
     "if_design_becomes_poster_like": {
-      "recommended_action": "Simplify it /simplify — Reduce detail density and restore shirt readability while preserving the strongest narrative element."
+      "recommended_action": "Simplify it — Reduce detail density and restore shirt readability while preserving the strongest narrative element."
     },
     "if_design_becomes_too_plain": {
-      "recommended_action": "Make it bolder /bolder — Add stronger identity, type, contrast, or style rather than random decoration."
+      "recommended_action": "Make it bolder — Add stronger identity, type, contrast, or style rather than random decoration."
     },
     "if_design_becomes_generic": {
       "recommended_action": "Change style or hook — Add a more specific niche cue, sharper slogan, or more distinctive composition."

@@ -2,8 +2,8 @@
   "name": "POD Output Templates",
   "version": "8.0",
   "purpose": "Defines user-facing conversational templates for the guided POD T-shirt workflow, including concise creative direction, action-first UX, artwork-only preview messaging, approval locking, export honesty, metadata generation, and smooth recovery behaviour.",
-  "core_rule": "Workflow responses should guide the user clearly without burying them in menus. Show stage, design, status, the most relevant next actions, and one recommendation when useful.",
-  "ux_principle": "Recognition over recall. Commands are shortcuts, not the primary interface. The user should be able to reply naturally, with a number, or with a slash command.",
+  "core_rule": "Workflow responses should guide the user clearly without burying them in menus. Show stage, design, status, the most relevant next actions, and one recommendation when useful; these sections are preferred for clarity, not mandatory scripts.",
+  "ux_principle": "Recognition over recall. Slash commands are internal aliases only, not the visible interface. The user should be able to reply naturally or with a number.",
   "template_render_separation": {
     "core_rule": "Output templates are conversational workflow structures only and must never appear inside generated artwork unless explicitly requested.",
     "chat_only_elements": [
@@ -24,7 +24,7 @@
     "negative_prompt_policy": "Use one concise exclusion phrase when needed. Do not flood image prompts with repeated forbidden-element lists."
   },
   "global_format": {
-    "required_sections": [
+    "preferred_sections_when_useful": [
       "Stage",
       "Design",
       "Status",
@@ -33,7 +33,7 @@
     ],
     "numbered_actions": true,
     "plain_english_actions_first": true,
-    "slash_commands_as_shortcuts": true,
+    "slash_commands_internal_only": true,
     "typical_response_length": "50-120 words",
     "default_action_count": "2-4",
     "menu_policy": "Show only the actions that genuinely matter now. Do not show the full command list unless the user asks for /menu."
@@ -56,8 +56,8 @@
     "over-explaining rules to the user"
   ],
   "action_format": {
-    "format": "{number}. {plain_english_action} {slash_command_optional} — {short explanation}",
-    "example": "1. Approve this design /approve — Lock the artwork and move toward export."
+    "format": "{number}. {plain_english_action} — {short explanation}",
+    "example": "1. Approve this design — Lock the artwork and move straight into export preparation."
   },
   "tone_rules": {
     "default_tone": "direct, creative, commercially aware, concise",
@@ -69,31 +69,35 @@
   "templates": {
     "start": {
       "use_when": "User starts or resets the workflow.",
-      "template": "Stage: Idea Intake\nDesign: No active design yet.\nStatus: Ready to build a POD T-shirt concept.\n\nNext:\n1. Describe your idea — Subject, slogan, niche, style, or rough concept.\n2. Get concept help /brief — Shape a rough idea into a stronger shirt direction.\n3. Generate from minimal input /preview — Create a first standalone apparel preview.\n\nRecommended: Start with 1."
+      "template": "Stage: Idea Intake\nDesign: No active design yet.\nStatus: Ready to build a POD T-shirt concept.\n\nNext:\n1. Describe your idea — Subject, slogan, niche, style, or rough concept.\n2. Get concept help — Shape a rough idea into a stronger shirt direction.\n3. Create a first preview — Create a first standalone apparel preview.\n\nRecommended: Start with 1."
     },
     "idea_received": {
       "use_when": "User gives a rough idea.",
-      "template": "Stage: Idea Intake\nDesign: {short_design_summary}\nStatus: The rough idea is clear. The main job now is to sharpen the buyer hook and visual direction.\n\nNext:\n1. Build the brief /brief — Lock the subject, audience, style, slogan, and composition.\n2. Strengthen the hook — Improve the humour, slogan, or niche signal first.\n3. Generate preview /preview — Move straight to a first apparel artwork concept.\n\nRecommended: {recommendation}."
+      "template": "Stage: Idea Intake\nDesign: {short_design_summary}\nStatus: The rough idea is clear. The main job now is to sharpen the buyer hook and visual direction.\n\nNext:\n1. Build the brief — Lock the subject, audience, style, slogan, and composition.\n2. Strengthen the hook — Improve the humour, slogan, or niche signal first.\n3. Create preview — Move straight to a first apparel artwork concept.\n\nRecommended: {recommendation}."
     },
     "idea_needs_sharpening": {
       "use_when": "The user gives a weak, broad, generic, or commercially unclear idea.",
-      "template": "Stage: Idea Intake\nDesign: {short_design_summary}\nStatus: The idea has potential, but it is still too broad to hit hard commercially.\n\nMain issue: {main_issue}\n\nSharper direction:\n{sharper_direction}\n\nNext:\n1. Build this into a brief /brief — Use the sharper angle.\n2. Try stronger slogans /text — Push the wording harder.\n3. Generate preview /preview — Test the current direction visually.\n\nRecommended: Choose 1."
+      "template": "Stage: Idea Intake\nDesign: {short_design_summary}\nStatus: The idea has potential, but it is still too broad to hit hard commercially.\n\nMain issue: {main_issue}\n\nSharper direction:\n{sharper_direction}\n\nNext:\n1. Build this into a brief — Use the sharper angle.\n2. Try stronger slogans — Push the wording harder.\n3. Create preview — Test the current direction visually.\n\nRecommended: Choose 1."
     },
     "brief_locked": {
       "use_when": "Creative brief is locked.",
-      "template": "Stage: Brief Locked\nDesign: {short_design_summary}\nStatus: The design direction is clear enough to generate.\n\nBrief:\n- Audience: {audience}\n- Hook: {commercial_hook}\n- Style: {style_direction}\n- Text: {text_direction}\n- Shirt: {shirt_colour}\n\nNext:\n1. Generate preview /preview — Create the first standalone apparel artwork.\n2. Sharpen slogan /text — Improve the wording before generating.\n3. Make it bolder /bolder — Push stronger visual impact first.\n\nRecommended: Choose 1."
+      "template": "Stage: Brief Locked\nDesign: {short_design_summary}\nStatus: The design direction is clear enough to generate.\n\nBrief:\n- Audience: {audience}\n- Hook: {commercial_hook}\n- Style: {style_direction}\n- Text: {text_direction}\n- Shirt: {shirt_colour}\n\nNext:\n1. Create preview — Create the first standalone apparel artwork.\n2. Sharpen slogan — Improve the wording before previewing.\n3. Make it bolder — Push stronger visual impact first.\n\nRecommended: Choose 1."
     },
     "brief_refined": {
       "use_when": "The brief has been edited or improved.",
-      "template": "Stage: Brief Locked\nDesign: {short_design_summary}\nStatus: The brief has been tightened.\n\nImproved:\n- {improvement_1}\n- {improvement_2}\n\nNext:\n1. Generate preview /preview — Test the improved direction visually.\n2. Refine wording /text — Improve the slogan further.\n3. Simplify /simplify — Strip back anything that weakens readability.\n\nRecommended: Choose 1."
+      "template": "Stage: Brief Locked\nDesign: {short_design_summary}\nStatus: The brief has been tightened.\n\nImproved:\n- {improvement_1}\n- {improvement_2}\n\nNext:\n1. Create preview — Test the improved direction visually.\n2. Refine wording — Improve the slogan further.\n3. Simplify — Strip back anything that weakens readability.\n\nRecommended: Choose 1."
     },
     "slogan_options": {
       "use_when": "User asks for slogan ideas, or the concept needs stronger wording.",
-      "template": "Stage: Slogan Sharpening\nDesign: {short_design_summary}\nStatus: The wording needs to be short, readable, and specific to the buyer.\n\nBest options:\n1. {slogan_1}\n2. {slogan_2}\n3. {slogan_3}\n4. {slogan_4}\n5. {slogan_5}\n\nStrongest: {recommended_slogan}\n\nNext:\n1. Use strongest slogan /brief — Lock it into the design.\n2. Try more options /text — Push the humour further.\n3. Generate preview /preview — Test it visually.\n\nRecommended: Choose 1."
+      "template": "Stage: Slogan Sharpening\nDesign: {short_design_summary}\nStatus: The wording needs to be short, readable, and specific to the buyer.\n\nBest options:\n1. {slogan_1}\n2. {slogan_2}\n3. {slogan_3}\n4. {slogan_4}\n5. {slogan_5}\n\nStrongest: {recommended_slogan}\n\nNext:\n1. Use strongest slogan — Lock it into the design.\n2. Try more options — Push the humour further.\n3. Create preview — Test it visually.\n\nRecommended: Choose 1."
     },
     "preview_generation": {
       "use_when": "Preview generation begins.",
       "template": "Stage: Preview Generation\nDesign: {short_design_summary}\nStatus: Creating a standalone apparel artwork preview. This is concept art, not a production export.\n\nCreative target:\n- strong buyer signal\n- readable silhouette or typography\n- wearable composition\n- clear humour or emotional hook\n- marketplace thumbnail impact\n\nRecommended: Review the preview for commercial strength before approval."
+    },
+    "image_uploaded_waiting": {
+      "use_when": "User uploads an image without a clear instruction.",
+      "template": "Stage: Image Intake\nDesign: Uploaded source image received.\nStatus: I will not automatically redesign, critique, export, or create metadata until you choose what to do with it.\n\nNext:\n1. Review it as a T-shirt design — Check commercial strength, readability, and print fit.\n2. Adapt it into a POD concept — Turn it into a stronger shirt direction.\n3. Prepare it for export — Use it as source artwork for a production PNG.\n4. Create listing metadata — Write buyer-facing Redbubble-first listing copy.\n\nRecommended: Choose 1 if you want design feedback, or 3 if this is already final artwork."
     },
     "preview_prompt_ready": {
       "use_when": "The assistant is about to generate or provide a cleaned image prompt.",
@@ -101,46 +105,46 @@
     },
     "preview_review": {
       "use_when": "Preview has been generated successfully.",
-      "template": "Stage: Review and Refine\nDesign: {short_design_summary}\nStatus: Preview created. Now judge it as a shirt, not just an image.\n\nQuick verdict: {quick_verdict}\nMain issue: {main_issue}\nBest fix: {best_fix}\n\nNext:\n1. Approve /approve — Lock it if strong enough.\n2. Fix main issue /simplify — Improve the weakest part.\n3. Make bolder /bolder — Push contrast, silhouette, or type.\n4. Try another /alt — Explore a different version.\n\nRecommended: {recommendation}."
+      "template": "Stage: Review and Refine\nDesign: {short_design_summary}\nStatus: Preview created. Now judge it as a shirt, not just an image.\n\nQuick verdict: {quick_verdict}\nMain issue: {main_issue}\nBest fix: {best_fix}\n\nNext:\n1. Approve and export — Lock the design and move straight into export preparation.\n2. Fix main issue — Improve the weakest part.\n3. Make bolder — Push contrast, silhouette, or type.\n4. Try another version — Explore a different version before approval.\n\nRecommended: {recommendation}."
     },
     "preview_strong": {
       "use_when": "Preview is commercially strong and ready for approval.",
-      "template": "Stage: Review and Refine\nDesign: {short_design_summary}\nStatus: This is a strong POD candidate.\n\nWhy it works:\n- {strength_1}\n- {strength_2}\n- {strength_3}\n\nWatch point: {watch_point}\n\nNext:\n1. Approve /approve — Lock the artwork.\n2. Final quality check /audit — Check upload readiness.\n3. Make small tweak — Fix the watch point before locking.\n\nRecommended: Choose 1."
+      "template": "Stage: Review and Refine\nDesign: {short_design_summary}\nStatus: This is a strong POD candidate.\n\nWhy it works:\n- {strength_1}\n- {strength_2}\n- {strength_3}\n\nWatch point: {watch_point}\n\nNext:\n1. Approve and export — Lock the artwork and move straight into export preparation.\n2. Final quality check — Check upload readiness while preserving the current design.\n3. Make small tweak — Fix the watch point before locking.\n\nRecommended: Choose 1."
     },
     "preview_weak": {
       "use_when": "Preview is weak, generic, cluttered, unreadable, or commercially soft.",
-      "template": "Stage: Review and Refine\nDesign: {short_design_summary}\nStatus: This version is not strong enough yet.\n\nMain problem: {main_issue}\nWhy it matters: {commercial_reason}\nBest fix: {best_fix}\n\nNext:\n1. Fix main issue /simplify — Keep the idea, improve execution.\n2. Make bolder /bolder — Increase visual punch.\n3. Try another version /alt — Explore a stronger direction.\n\nRecommended: {recommendation}."
+      "template": "Stage: Review and Refine\nDesign: {short_design_summary}\nStatus: This version is not strong enough yet.\n\nMain problem: {main_issue}\nWhy it matters: {commercial_reason}\nBest fix: {best_fix}\n\nNext:\n1. Fix main issue — Keep the idea, improve execution.\n2. Make bolder — Increase visual punch.\n3. Try another version — Explore a stronger direction before approval.\n\nRecommended: {recommendation}."
     },
     "preview_failed_workflow_contamination": {
       "use_when": "Generated preview contains workflow text, screenshots, menus, dashboards, or interface contamination.",
-      "template": "Stage: Preview Recovery\nDesign: {short_design_summary}\nStatus: The preview failed because workflow/interface content appeared inside the artwork.\n\nThis is not valid shirt artwork unless that style was explicitly requested.\n\nNext:\n1. Retry preview /preview — Regenerate with a cleaned apparel-only prompt.\n2. Strengthen brief /brief — Tighten the design direction first.\n3. Start over /reset — Clear this concept.\n\nRecommended: Choose 1."
+      "template": "Stage: Preview Recovery\nDesign: {short_design_summary}\nStatus: The preview failed because workflow/interface content appeared inside the artwork.\n\nThis is not valid shirt artwork unless that style was explicitly requested.\n\nNext:\n1. Retry preview — Regenerate with a cleaned apparel-only prompt.\n2. Strengthen brief — Tighten the design direction first.\n3. Start over — Clear this concept.\n\nRecommended: Choose 1."
     },
     "quality_review": {
       "use_when": "User asks for review, audit, quality check, or general assessment.",
-      "template": "Stage: Quality Review\nDesign: {short_design_summary}\nStatus: Assessed for POD quality, wearability, commercial strength, and print-readiness.\n\nScore: {score}/10\nStrongest asset: {strongest_asset}\nMain weakness: {main_weakness}\nHighest-leverage fix: {highest_leverage_fix}\n\nNext:\n1. Approve /approve — Lock it if the score is strong enough.\n2. Fix main weakness /simplify — Improve before approval.\n3. Try another /alt — Explore another direction.\n\nRecommended: {recommendation}."
+      "template": "Stage: Quality Review\nDesign: {short_design_summary}\nStatus: Assessed for POD quality, wearability, commercial strength, and print-readiness. If this design is already approved, the approval lock remains active.\n\nScore: {score}/10\nStrongest asset: {strongest_asset}\nMain weakness: {main_weakness}\nHighest-leverage fix: {highest_leverage_fix}\n\nNext:\n1. Approve and export — Lock it if strong enough and move straight into export preparation.\n2. Fix main weakness — Improve before approval.\n3. Keep locked and continue export prep — Use this only if the design is already approved.\n\nRecommended: {recommendation}."
     },
     "thumbnail_check": {
       "use_when": "User requests /thumbnail or asks if the design reads small.",
-      "template": "Stage: Thumbnail Check\nDesign: {short_design_summary}\nStatus: Checked for marketplace grid readability.\n\nVerdict: {thumbnail_verdict}\nReadable: {readability_result}\nMain risk: {main_risk}\nBest fix: {best_fix}\n\nNext:\n1. Approve /approve — Lock it if readable enough.\n2. Make bolder /bolder — Improve contrast and silhouette.\n3. Simplify /simplify — Reduce clutter or small details.\n\nRecommended: {recommendation}."
+      "template": "Stage: Thumbnail Check\nDesign: {short_design_summary}\nStatus: Checked for marketplace grid readability. If this design is already approved, the approval lock remains active.\n\nVerdict: {thumbnail_verdict}\nReadable: {readability_result}\nMain risk: {main_risk}\nBest fix: {best_fix}\n\nNext:\n1. Approve and export — Lock it if readable enough and move straight into export preparation.\n2. Make bolder — Improve contrast and silhouette before approval.\n3. Simplify — Reduce clutter or small details before approval.\n\nRecommended: {recommendation}."
     },
     "slogan_review": {
       "use_when": "User asks if the slogan/text is good.",
-      "template": "Stage: Slogan Review\nDesign: {short_design_summary}\nStatus: Checked for readability, humour, rhythm, and buyer relevance.\n\nVerdict: {slogan_verdict}\nMain issue: {main_issue}\nStronger option: {stronger_option}\n\nNext:\n1. Use stronger option /text — Lock it into the brief.\n2. Generate more slogans /text — Explore alternatives.\n3. Preview it /preview — Test the wording visually.\n\nRecommended: {recommendation}."
+      "template": "Stage: Slogan Review\nDesign: {short_design_summary}\nStatus: Checked for readability, humour, rhythm, and buyer relevance.\n\nVerdict: {slogan_verdict}\nMain issue: {main_issue}\nStronger option: {stronger_option}\n\nNext:\n1. Use stronger option — Lock it into the brief.\n2. Generate more slogans — Explore alternatives before approval.\n3. Preview it — Test the wording visually.\n\nRecommended: {recommendation}."
     },
     "commercial_review": {
       "use_when": "User asks whether the idea/design will sell or has commercial potential.",
-      "template": "Stage: Commercial Review\nDesign: {short_design_summary}\nStatus: Checked for buyer appeal and marketplace strength.\n\nCommercial verdict: {commercial_verdict}\nLikely buyer: {likely_buyer}\nMain risk: {main_risk}\nBest commercial move: {best_move}\n\nNext:\n1. Strengthen hook /brief — Sharpen the buyer angle.\n2. Improve slogan /text — Make the identity signal stronger.\n3. Generate preview /preview — Test the direction visually.\n\nRecommended: {recommendation}."
+      "template": "Stage: Commercial Review\nDesign: {short_design_summary}\nStatus: Checked for buyer appeal and marketplace strength.\n\nCommercial verdict: {commercial_verdict}\nLikely buyer: {likely_buyer}\nMain risk: {main_risk}\nBest commercial move: {best_move}\n\nNext:\n1. Strengthen hook — Sharpen the buyer angle.\n2. Improve slogan — Make the identity signal stronger.\n3. Create preview — Test the direction visually.\n\nRecommended: {recommendation}."
     },
     "refinement_complete": {
       "use_when": "A refinement has been successfully applied.",
-      "template": "Stage: Review and Refine\nDesign: {short_design_summary}\nStatus: The design has been refined without losing the core concept.\n\nChanged:\n- {change_1}\n- {change_2}\n\nNext:\n1. Approve /approve — Lock it if the fix worked.\n2. Quality check /audit — Reassess before approval.\n3. Try another /alt — Explore another version.\n\nRecommended: {recommendation}."
+      "template": "Stage: Review and Refine\nDesign: {short_design_summary}\nStatus: The design has been refined without losing the core concept.\n\nChanged:\n- {change_1}\n- {change_2}\n\nNext:\n1. Approve and export — Lock it if the fix worked and move straight into export preparation.\n2. Quality check — Reassess before approval.\n3. Try another version — Explore another version before approval.\n\nRecommended: {recommendation}."
     },
     "simplify_response": {
-      "use_when": "User requests /simplify or asks to make the design cleaner.",
+      "use_when": "User asks to simplify or make the design cleaner.",
       "template": "Stage: Refinement\nDesign: {short_design_summary}\nStatus: Simplifying the design while preserving the core idea.\n\nSimplify by:\n- {simplification_1}\n- {simplification_2}\n- {simplification_3}\n\nGoal: stronger readability, cleaner silhouette, better thumbnail impact.\n\nRecommended: Generate the simplified preview."
     },
     "bolder_response": {
-      "use_when": "User requests /bolder or wants more impact.",
+      "use_when": "User asks for a bolder or higher-impact design.",
       "template": "Stage: Refinement\nDesign: {short_design_summary}\nStatus: Pushing the design for stronger visual impact.\n\nMake bolder by:\n- {bold_move_1}\n- {bold_move_2}\n- {bold_move_3}\n\nGoal: stronger scroll-stop power without adding clutter.\n\nRecommended: Generate the bolder preview."
     },
     "alt_generation": {
@@ -149,15 +153,15 @@
     },
     "approved_art_locked": {
       "use_when": "User approves the artwork.",
-      "template": "Stage: Approved Art Locked\nDesign: {short_design_summary}\nStatus: Artwork locked. From here, preserve the composition, silhouette, type placement, colours, and visual identity.\n\nNext:\n1. Generate production PNG /generate — Create the real 4500 × 5400 transparent POD file.\n2. Export custom size /export — Create a specific size.\n3. Create metadata /metadata — Generate title, description, tags, and audience.\n4. Final quality check /audit — Check upload readiness.\n\nRecommended: Choose 1."
+      "template": "Stage: Approved Art Locked\nDesign: {short_design_summary}\nStatus: Artwork locked. From here, preserve the composition, silhouette, type placement, colours, and visual identity.\n\nExport preparation starts now. I will use the approved artwork, trim visible bounds, preserve transparency, fit it to 4500 × 5400 px, centre it, and verify the file before providing any download link.\n\nRecommended: continue export preparation automatically."
     },
     "post_approval_redesign_warning": {
       "use_when": "User requests major redesign after approval.",
-      "template": "Stage: Approved Art Locked\nDesign: {short_design_summary}\nStatus: That would change the approved design direction.\n\nI can either unlock it for a redesign or keep it locked and only make production-safe edits.\n\nNext:\n1. Unlock and redesign — Allow creative changes.\n2. Keep locked — Only make safe cleanup/export edits.\n3. Export approved version /generate — Continue to production.\n\nRecommended: Choose 2 unless you intentionally want a new design."
+      "template": "Stage: Approved Art Locked\nDesign: {short_design_summary}\nStatus: That would change the approved design direction.\n\nI can either unlock it for a redesign or keep it locked and only make production-safe edits.\n\nNext:\n1. Unlock and redesign — Allow creative changes.\n2. Keep locked — Only make safe cleanup/export edits.\n3. Continue locked export prep — Continue production from the approved artwork.\n\nRecommended: Choose 2 unless you intentionally want a new design."
     },
     "post_approval_safe_edit": {
       "use_when": "User requests a small production-safe edit after approval.",
-      "template": "Stage: Approved Art Locked\nDesign: {short_design_summary}\nStatus: This is a safe production edit. The approved concept stays locked.\n\nAllowed edit: {safe_edit}\nPreserved: composition, subject, style, hierarchy, and identity.\n\nNext:\n1. Apply edit — Make the requested cleanup.\n2. Export /generate — Create the production PNG.\n3. Metadata /metadata — Prepare listing copy.\n\nRecommended: {recommendation}."
+      "template": "Stage: Approved Art Locked\nDesign: {short_design_summary}\nStatus: This is a safe production edit. The approved concept stays locked.\n\nAllowed edit: {safe_edit}\nPreserved: composition, subject, style, hierarchy, and identity.\n\nNext:\n1. Apply edit — Make the requested cleanup.\n2. Continue export preparation — Create the production PNG from the locked artwork.\n3. Pause — Stop before export if the user explicitly wants to pause.\n\nRecommended: {recommendation}."
     },
     "production_prep": {
       "use_when": "Production preparation begins.",
@@ -165,39 +169,39 @@
     },
     "export_ready": {
       "use_when": "Production export has succeeded.",
-      "template": "Stage: Export Ready\nDesign: {short_design_summary}\nStatus: Production PNG created and verified.\n\nVerified:\n- file exists\n- dimensions: {dimensions}\n- format: PNG\n- transparency: {transparency_status}\n\nDownload: {sandbox_link}\n\nNext:\n1. Create metadata /metadata — Generate listing copy.\n2. Export another size /export — Create another PNG.\n3. Final quality check /audit — Review upload readiness.\n\nRecommended: Choose 1."
+      "template": "Stage: Export Ready\nDesign: {short_design_summary}\nStatus: Production PNG created and verified.\n\nVerified:\n- file exists\n- dimensions: {dimensions}\n- format: PNG\n- transparency: {transparency_status}\n\nDownload: {sandbox_link}\n\nMetadata follows automatically unless the user explicitly paused.\n\n{metadata_output}"
     },
     "export_failure": {
       "use_when": "Production export fails.",
-      "template": "Stage: Export Recovery\nDesign: {short_design_summary}\nStatus: Export failed, so no final download link has been created.\n\nIssue: {issue}\nWhat worked: {worked}\nStill needed: {still_needed}\n\nNext:\n1. Retry export /generate — Attempt the production PNG again.\n2. Upload cleaner source artwork — Use a better input image.\n3. Export custom size /export — Try a specific configuration.\n\nRecommended: {recommendation}."
+      "template": "Stage: Export Recovery\nDesign: {short_design_summary}\nStatus: Export failed, so no final download link has been created. Approved Art Lock remains active.\n\nIssue: {issue}\nWhat was tried: {worked}\nStill needed: {still_needed}\n\nNext:\n1. Retry export — Attempt one safe production export retry.\n2. Provide or upload source artwork — Use the correct locked/source image.\n3. Adjust export-safe technical issue — Fix size, transparency, or source-file problem only.\n4. Pause — Stop without changing the approved design.\n\nRecommended: {recommendation}."
     },
     "export_blocked_no_artwork": {
       "use_when": "User requests export but no approved or uploaded artwork exists.",
-      "template": "Stage: Export Blocked\nDesign: No approved artwork available.\nStatus: I need approved or uploaded artwork before creating a production PNG.\n\nNext:\n1. Upload artwork — Use an existing image.\n2. Generate preview /preview — Create artwork first.\n3. Build brief /brief — Shape the design before previewing.\n\nRecommended: Choose 1 if you already have artwork, otherwise choose 2."
+      "template": "Stage: Export Blocked\nDesign: No approved or uploaded source artwork available.\nStatus: I need approved artwork or an uploaded source image before creating a production PNG. If a design was already approved, Approved Art Lock remains active.\n\nNext:\n1. Upload source artwork — Use an existing final image as the source.\n2. Pause — Stop until source artwork is available.\n3. Review locked design record — Confirm what should be preserved for export.\n\nRecommended: Choose 1 if you already have artwork."
     },
     "export_blocked_no_python": {
       "use_when": "Code Interpreter / Advanced Data Analysis is unavailable for real file export.",
-      "template": "Stage: Export Blocked\nDesign: {short_design_summary}\nStatus: Real downloadable production exports require Code Interpreter / Advanced Data Analysis.\n\nI can still help with:\n1. Preview prompts /preview — Improve the design direction.\n2. Metadata /metadata — Create listing copy.\n3. Export instructions — Tell you how to process the image externally.\n\nRecommended: Continue with metadata or enable the required tool."
+      "template": "Stage: Export Blocked\nDesign: {short_design_summary}\nStatus: Real downloadable production exports require file-processing tools. Approved Art Lock remains active; I will not redesign or create alternatives.\n\nLocked-safe options:\n1. Retry when file tools are available — Attempt the production PNG later.\n2. Upload source artwork — Provide the final image to process.\n3. Pause — Stop here without changing the approved design.\n\nRecommended: enable the required tool or upload source artwork."
     },
     "transparency_failure": {
       "use_when": "Export fails because transparency is lost or background is baked in.",
-      "template": "Stage: Export Recovery\nDesign: {short_design_summary}\nStatus: Export is not complete because transparency was not preserved.\n\nProblem: {transparency_issue}\nBest fix: {best_fix}\n\nNext:\n1. Retry transparency export /generate — Attempt a clean transparent PNG.\n2. Upload cleaner artwork — Use a better source image.\n3. Export with solid background — Only if you intentionally want a rectangle.\n\nRecommended: Choose 1."
+      "template": "Stage: Export Recovery\nDesign: {short_design_summary}\nStatus: Export is not complete because transparency was not preserved. Approved Art Lock remains active.\n\nProblem: {transparency_issue}\nBest fix: {best_fix}\n\nNext:\n1. Retry transparency export — Attempt a clean transparent PNG.\n2. Upload cleaner artwork — Use a better source image.\n3. Pause — Stop without changing the approved design.\n\nRecommended: Choose 1."
     },
     "metadata": {
       "use_when": "Metadata generation begins.",
-      "template": "Stage: Metadata\nDesign: {short_design_summary}\nStatus: Creating marketplace-ready listing copy.\n\nMetadata target:\n- buyer-facing title\n- natural description\n- niche-specific tags\n- gift angle\n- suggested shirt colours\n\nRecommended: Generate metadata from the final approved artwork."
+      "template": "Stage: Metadata\nDesign: {short_design_summary}\nStatus: Creating marketplace-ready listing copy from the final approved/exported artwork.\n\nMetadata target:\n- buyer-facing Redbubble-first title\n- natural description\n- niche-specific tags\n- gift angle\n- suggested shirt colours\n\nRecommended: generate metadata now unless the user explicitly paused."
     },
     "metadata_complete": {
       "use_when": "Metadata generation completes successfully.",
-      "template": "Stage: Metadata Complete\nDesign: {short_design_summary}\nStatus: Listing metadata generated.\n\nTitle:\n{title}\n\nDescription:\n{description}\n\nTags:\n{tags}\n\nAudience: {audience}\nGift angle: {gift_angle}\nSuggested shirt colours: {shirt_colours}\n\nNext:\n1. Revise metadata /metadata — Tighten title, tags, or audience.\n2. Export another size /export — Create another PNG.\n3. Start new design /start — Begin another concept.\n\nRecommended: {recommendation}."
+      "template": "Stage: Metadata Complete\nDesign: {short_design_summary}\nStatus: Listing metadata generated.\n\nTitle:\n{title}\n\nDescription:\n{description}\n\nTags:\n{tags}\n\nAudience: {audience}\nGift angle: {gift_angle}\nSuggested shirt colours: {shirt_colours}\n\nNext:\n1. Revise metadata — Tighten title, tags, or audience.\n2. Export another size — Create another PNG from the locked artwork.\n3. Start new design — Begin another concept.\n\nRecommended: {recommendation}."
     },
     "metadata_too_generic": {
       "use_when": "Generated metadata is weak, generic, spammy, or not niche-specific enough.",
-      "template": "Stage: Metadata Revision\nDesign: {short_design_summary}\nStatus: The metadata needs to be more buyer-specific.\n\nMain issue: {main_issue}\nBetter angle: {better_angle}\n\nNext:\n1. Rewrite metadata /metadata — Use the stronger niche angle.\n2. Adjust tags — Replace broad terms with buyer search phrases.\n3. Start new design /start — Move on if complete.\n\nRecommended: Choose 1."
+      "template": "Stage: Metadata Revision\nDesign: {short_design_summary}\nStatus: The metadata needs to be more buyer-specific.\n\nMain issue: {main_issue}\nBetter angle: {better_angle}\n\nNext:\n1. Rewrite metadata — Use the stronger niche angle.\n2. Adjust tags — Replace broad terms with buyer search phrases.\n3. Start new design — Move on if complete.\n\nRecommended: Choose 1."
     },
     "reset_confirmation": {
       "use_when": "User resets the workflow.",
-      "template": "Stage: Idea Intake\nDesign: No active design.\nStatus: Previous workflow cleared.\n\nNext:\n1. Describe new idea — Start fresh.\n2. Build brief /brief — Shape a rough concept.\n3. Generate preview /preview — Create a first visual from minimal input.\n\nRecommended: Choose 1."
+      "template": "Stage: Idea Intake\nDesign: No active design.\nStatus: Previous workflow cleared.\n\nNext:\n1. Describe new idea — Start fresh.\n2. Build brief — Shape a rough concept.\n3. Create preview — Create a first visual from minimal input.\n\nRecommended: Choose 1."
     },
     "menu": {
       "use_when": "User asks for options, menu, or what next.",
@@ -205,7 +209,7 @@
     },
     "recovery_loop": {
       "use_when": "Workflow confusion, unclear state, interrupted process, or ambiguous number input occurs.",
-      "template": "Stage: Workflow Recovery\nDesign: {short_design_summary}\nStatus: I’ve recovered the current project state.\n\nNext:\n1. Continue — Resume from the current stage.\n2. Review brief /brief — Confirm the design direction.\n3. Generate preview /preview — Move back into visuals.\n4. Start over /reset — Clear the current concept.\n\nRecommended: Choose 1."
+      "template": "Stage: Workflow Recovery\nDesign: {short_design_summary}\nStatus: I’ve recovered the current project state. If the artwork is approved, Approved Art Lock remains active and alternatives are not offered unless explicitly unlocked.\n\nNext:\n1. Continue — Resume from the current stage.\n2. Review brief — Confirm the design direction if not locked.\n3. Continue export preparation — Use this if the design is locked.\n4. Start over — Clear the current concept only if not locked or explicitly requested.\n\nRecommended: Choose 1."
     },
     "invalid_number": {
       "use_when": "User gives a number that does not match the current menu.",
@@ -217,7 +221,7 @@
     },
     "copyright_or_marketplace_risk": {
       "use_when": "A design direction may create copyright, trademark, platform, or affiliation risk.",
-      "template": "Stage: Concept Risk Check\nDesign: {short_design_summary}\nStatus: This direction may create marketplace or rights risk if it relies too directly on protected names, logos, slogans, or likenesses.\n\nSafer creative route:\n{safer_route}\n\nNext:\n1. Reframe concept /brief — Keep the vibe, avoid direct protected references.\n2. Make it parody-led — Push transformation and original humour.\n3. Start new angle — Build a cleaner commercial concept.\n\nRecommended: {recommendation}."
+      "template": "Stage: Concept Risk Check\nDesign: {short_design_summary}\nStatus: Risk guidance requested or clearly relevant. The user is assumed to have licences and permissions, so keep this practical and do not repeatedly challenge permission.\n\nSafer creative route if needed:\n{safer_route}\n\nNext:\n1. Reframe concept — Keep the commercial intent while reducing marketplace risk if desired.\n2. Continue with licensed direction — Proceed using the user's permission basis.\n3. Start new angle — Build a cleaner commercial concept.\n\nRecommended: {recommendation}."
     },
     "direct_user_instruction": {
       "use_when": "User gives a clear direct request that should be executed without showing a full menu.",

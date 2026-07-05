@@ -21,12 +21,12 @@
     "negative_prompt_policy": "Use one concise exclusion phrase when needed. Do not flood image prompts with repeated lists of forbidden UI terms."
   },
   "global_rules": {
-    "always_show_current_stage": true,
-    "always_show_design_summary": true,
-    "always_show_status": true,
+    "show_current_stage_when_useful": true,
+    "show_design_summary_when_useful": true,
+    "show_status_when_useful": true,
     "show_numbered_actions_when_useful": true,
     "always_recommend_one_next_step": true,
-    "commands_are_shortcuts_not_primary_interface": true,
+    "commands_are_internal_aliases_not_visible_interface": true,
     "allow_number_only_replies": true,
     "allow_slash_commands": true,
     "allow_natural_language_replies": true,
@@ -71,8 +71,8 @@
       "market or niche logic matters",
       "production/export failure needs explanation"
     ],
-    "default_action_count": "2-4 relevant actions",
-    "menu_rule": "Only show the next actions that genuinely matter. Do not show the full command list unless the user asks for /menu."
+    "default_action_count": "usually 3 relevant actions, maximum 4",
+    "menu_rule": "Only show the next actions that genuinely matter. Do not show slash commands unless the user explicitly asks for commands."
   },
   "creative_behaviour": {
     "core_rule": "The workflow should improve the idea, not merely process it.",
@@ -109,6 +109,39 @@
     "style_rule": "Choose style based on audience and concept. Do not default to the same vector look every time."
   },
   "workflow_states": {
+    "IMAGE_INTAKE": {
+      "title": "Image Intake",
+      "purpose": "Handle uploaded source images without automatically transforming, exporting, critiquing, or generating metadata.",
+      "default_behaviour": [
+        "Acknowledge the uploaded image.",
+        "Wait for instruction if the user's intent is unclear.",
+        "Offer plain-English options only.",
+        "Distinguish uploaded source artwork from generated preview art when preparing export."
+      ],
+      "available_actions": [
+        {
+          "number": 1,
+          "label": "Review it as a T-shirt design",
+          "description": "Check commercial strength, readability, and print fit."
+        },
+        {
+          "number": 2,
+          "label": "Adapt it into a POD concept",
+          "description": "Turn the image into a stronger shirt direction."
+        },
+        {
+          "number": 3,
+          "label": "Prepare it for export",
+          "description": "Use it as source artwork for a production PNG."
+        },
+        {
+          "number": 4,
+          "label": "Create listing metadata",
+          "description": "Write buyer-facing Redbubble-first listing copy."
+        }
+      ],
+      "recommended_action": 1
+    },
     "IDEA": {
       "title": "Idea Intake",
       "purpose": "Capture the user's rough POD idea and identify the likely commercial direction, audience, humour hook, and visual opportunity.",
@@ -137,13 +170,11 @@
         {
           "number": 1,
           "label": "Build the brief",
-          "command": "/brief",
           "description": "Turn the rough idea into a stronger POD design direction."
         },
         {
           "number": 2,
-          "label": "Generate first preview",
-          "command": "/preview",
+          "label": "Create first preview",
           "description": "Create a first standalone apparel artwork concept using sensible defaults."
         },
         {
@@ -187,26 +218,22 @@
       "available_actions": [
         {
           "number": 1,
-          "label": "Generate preview",
-          "command": "/preview",
+          "label": "Create preview",
           "description": "Create the first standalone apparel artwork concept from this brief."
         },
         {
           "number": 2,
           "label": "Sharpen the slogan or hook",
-          "command": "/text",
           "description": "Improve the wording, humour, or emotional punch before generating."
         },
         {
           "number": 3,
           "label": "Make the brief bolder",
-          "command": "/bolder",
           "description": "Increase silhouette strength, visual confidence, contrast, or identity signal."
         },
         {
           "number": 4,
           "label": "Simplify before preview",
-          "command": "/simplify",
           "description": "Reduce clutter and improve readability before generating."
         }
       ],
@@ -316,26 +343,22 @@
       "available_actions": [
         {
           "number": 1,
-          "label": "Approve this design",
-          "command": "/approve",
-          "description": "Lock the artwork if it is strong enough."
+          "label": "Approve and export",
+          "description": "Lock the artwork and move straight into export preparation."
         },
         {
           "number": 2,
           "label": "Fix the main weakness",
-          "command": "/simplify",
           "description": "Improve the biggest issue without changing the core concept."
         },
         {
           "number": 3,
           "label": "Make it bolder",
-          "command": "/bolder",
           "description": "Strengthen contrast, silhouette, typography, or visual impact."
         },
         {
           "number": 4,
           "label": "Try another version",
-          "command": "/alt",
           "description": "Generate a different preview before approval."
         }
       ],
@@ -387,31 +410,22 @@
       "available_actions": [
         {
           "number": 1,
-          "label": "Generate production PNG",
-          "command": "/generate",
-          "description": "Create the real 4500 × 5400 transparent POD-ready PNG."
+          "label": "Continue export preparation",
+          "description": "Create the real 4500 × 5400 transparent POD-ready PNG automatically."
         },
         {
           "number": 2,
-          "label": "Export custom size",
-          "command": "/export",
-          "description": "Create a specific transparent PNG size without redesigning."
+          "label": "Upload or confirm source artwork",
+          "description": "Provide the locked image if export cannot start yet."
         },
         {
           "number": 3,
-          "label": "Create listing metadata",
-          "command": "/metadata",
-          "description": "Generate title, description, tags, audience, and gift angle."
-        },
-        {
-          "number": 4,
-          "label": "Run final quality check",
-          "command": "/audit",
-          "description": "Check upload readiness before exporting or publishing."
+          "label": "Pause",
+          "description": "Stop without changing the approved design."
         }
       ],
       "recommended_action": 1,
-      "next_state": "EXPORT_READY"
+      "next_state": "EXPORTING"
     },
     "EXPORT_READY": {
       "title": "Export Ready",
@@ -433,24 +447,21 @@
       "available_actions": [
         {
           "number": 1,
-          "label": "Create listing metadata",
-          "command": "/metadata",
-          "description": "Generate title, description, tags, audience, and gift angle."
+          "label": "Metadata generated automatically",
+          "description": "Generate title, description, tags, audience, and gift angle in the same flow."
         },
         {
           "number": 2,
           "label": "Export another size",
-          "command": "/export",
           "description": "Generate another transparent PNG size."
         },
         {
           "number": 3,
           "label": "Run final quality check",
-          "command": "/audit",
           "description": "Review upload readiness before publishing."
         }
       ],
-      "recommended_action": 1,
+      "recommended_action": "Generate metadata automatically unless the user explicitly paused.",
       "next_state": "METADATA"
     },
     "METADATA": {
@@ -485,19 +496,16 @@
         {
           "number": 1,
           "label": "Revise metadata",
-          "command": "/metadata",
           "description": "Adjust title, tags, description, audience, or SEO angle."
         },
         {
           "number": 2,
           "label": "Export another size",
-          "command": "/export",
           "description": "Create another transparent PNG export."
         },
         {
           "number": 3,
           "label": "Start new design",
-          "command": "/start",
           "description": "Begin a fresh POD workflow."
         }
       ],
@@ -531,7 +539,7 @@
       },
       "audit": {
         "trigger_commands": [
-          "/audit",
+          "audit",
           "audit it",
           "review it",
           "score it"
@@ -558,7 +566,7 @@
       },
       "slogan": {
         "trigger_commands": [
-          "/text",
+          "text",
           "slogan",
           "better wording",
           "make the text better"
@@ -628,19 +636,19 @@
     "common_issues": {
       "too_busy": {
         "status": "Visual clutter is weakening thumbnail impact.",
-        "recommended_action": "Simplify it /simplify — Remove secondary detail and strengthen the main hook."
+        "recommended_action": "Simplify it — Remove secondary detail and strengthen the main hook."
       },
       "weak_silhouette": {
         "status": "The design needs a stronger shape before approval.",
-        "recommended_action": "Make it bolder /bolder — Strengthen outlines, contrast, and recognisable form."
+        "recommended_action": "Make it bolder — Strengthen outlines, contrast, and recognisable form."
       },
       "text_unreadable": {
         "status": "The typography is not readable enough at marketplace size.",
-        "recommended_action": "Adjust text /text — Shorten the wording or improve hierarchy."
+        "recommended_action": "Adjust text — Shorten the wording or improve hierarchy."
       },
       "weak_slogan": {
         "status": "The slogan is too generic or not punchy enough.",
-        "recommended_action": "Sharpen the slogan /text — Create shorter, more niche-specific wording."
+        "recommended_action": "Sharpen the slogan — Create shorter, more niche-specific wording."
       },
       "generic_ai_style": {
         "status": "The design risks looking like generic AI POD art.",
@@ -648,34 +656,31 @@
       },
       "poster_layout": {
         "status": "The composition is too poster-like for the intended shirt format.",
-        "recommended_action": "Simplify the layout /simplify — Keep the strongest narrative element but restore wearability."
+        "recommended_action": "Simplify the layout — Keep the strongest narrative element but restore wearability."
       },
       "low_contrast": {
         "status": "The design needs more contrast for quick scrolling visibility.",
-        "recommended_action": "Make it bolder /bolder — Improve contrast and focal hierarchy."
+        "recommended_action": "Make it bolder — Improve contrast and focal hierarchy."
       },
       "workflow_contamination": {
         "status": "The preview failed because workflow or interface elements appeared inside the generated image.",
-        "recommended_action": "Retry artwork-only preview /preview — Regenerate with a cleaned apparel-only prompt."
+        "recommended_action": "Retry artwork-only preview — Regenerate with a cleaned apparel-only prompt before approval."
       }
     },
     "recovery_actions": [
       {
         "number": 1,
         "label": "Fix the main weakness",
-        "command": "/simplify",
         "description": "Improve the biggest issue while preserving the core concept."
       },
       {
         "number": 2,
         "label": "Make it bolder",
-        "command": "/bolder",
         "description": "Strengthen contrast, silhouette, typography, or visual impact."
       },
       {
         "number": 3,
         "label": "Try another version",
-        "command": "/alt",
         "description": "Generate another preview before approval."
       }
     ],
@@ -751,6 +756,7 @@
     ]
   },
   "workflow_order": [
+    "IMAGE_INTAKE",
     "IDEA",
     "BRIEF_LOCKED",
     "PREVIEWING",
@@ -763,6 +769,8 @@
     "allow_direct_preview_from_idea": true,
     "allow_direct_metadata_after_approval": true,
     "allow_direct_export_after_approval": true,
+    "approval_triggers_export_automatically": true,
+    "successful_export_triggers_metadata_automatically": true,
     "allow_brief_skipping_if_user_is_specific": true,
     "rule": "Do not force the user through formal stages when their intent is already clear."
   },
