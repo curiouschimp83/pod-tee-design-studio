@@ -36,7 +36,7 @@
     "slash_commands_internal_only": true,
     "typical_response_length": "50-120 words",
     "default_action_count": "2-4",
-    "menu_policy": "Show only the actions that genuinely matter now. Do not show the full command list unless the user asks for /menu."
+    "menu_policy": "Every wizard Next section must use numbered plain-English choices: 1., 2., 3., with a maximum of 4 options. Show only the actions that genuinely matter now. Do not show the full command list unless the user asks for /menu."
   },
   "global_avoid": [
     "bare command dumps",
@@ -109,7 +109,7 @@
       "template": "Stage: Review and Refine\nDesign: {short_design_summary}\nStatus: Preview created. Now judge it as a shirt, not just an image.\n\nQuick verdict: {quick_verdict}\nMain issue: {main_issue}\nBest fix: {best_fix}\n\nNext:\n1. Approve and export — Lock the design and move straight into export preparation.\n2. Fix main issue — Improve the weakest part.\n3. Make bolder — Push contrast, silhouette, or type.\n4. Try another version — Explore a different version before approval.\n\nRecommended: {recommendation}."
     },
     "preview_production_blocked": {
-      "use_when": "Preview concept is promising, but the artwork is not production-ready because of accidental background fill, soft glowing panel, flattened background, edge softness, unreadable type, non-isolated artwork, or another production-blocking issue.",
+      "use_when": "Preview concept is promising, but the artwork is not production-ready because of a clearly visible baked background rectangle/blob/field, flattened background, edge softness, unreadable type, non-isolated artwork, or another production-blocking issue. Do not use for transparent-looking isolated artwork unless a filled panel is clearly visible; if uncertain, say to check whether the background is baked in or just the viewer background.",
       "template": "Stage: Review and Refine\nDesign: {short_design_summary}\nStatus: Strong concept, but not production-ready yet.\n\nProduction blocker: {production_blocker}\nWhy it matters: {commercial_or_print_reason}\nBest fix: {best_fix}\n\nNext:\n1. Clean it up — Keep the concept, remove the background fill, sharpen edges.\n2. Refine style balance — Push it cuter, darker, simpler, or bolder before another preview.\n3. Pause — Stop before approval/export.\n\nRecommended: Choose 1."
     },
     "preview_strong": {
@@ -170,15 +170,15 @@
     },
     "production_prep": {
       "use_when": "Production preparation begins.",
-      "template": "Stage: Export Preparation\nDesign: {short_design_summary}\nStatus: Preparing the approved artwork for transparent POD export.\n\nExport checks:\n- preserve approved design\n- trim excess whitespace\n- centre artwork\n- preserve transparency\n- verify dimensions\n- create real downloadable PNG\n\nRecommended: Continue only after verification succeeds."
+      "template": "Stage: Export Preparation\nDesign: {short_design_summary}\nStatus: Export is file processing only. I will use the exact approved/uploaded source artwork, not redraw, regenerate, reinterpret, restyle, or create a new image.\n\nExport checks:\n- preserve visible artwork exactly\n- use transparent source if provided\n- trim transparent/empty space only\n- remove accidental background only if technically possible from the actual source\n- centre artwork\n- fit to 4500 × 5400 px\n- save PNG\n- verify file exists before link\n- verify dimensions are 4500 × 5400 px\n- verify PNG mode includes alpha/transparency\n- verify transparent pixels exist outside the artwork\n\nRecommended: Continue only after file verification succeeds."
     },
     "export_ready": {
       "use_when": "Production export has succeeded.",
-      "template": "Stage: Export Ready\nDesign: {short_design_summary}\nStatus: Production PNG created and verified.\n\nVerified:\n- file exists\n- dimensions: {dimensions}\n- format: PNG\n- transparency: {transparency_status}\n\nDownload: {sandbox_link}\n\nMetadata follows automatically unless the user explicitly paused.\n\n{metadata_output}"
+      "template": "Stage: Export Ready\nDesign: {short_design_summary}\nStatus: Production PNG created from the source artwork and verified.\n\nVerified:\n- source artwork used: {source_artwork_status}\n- file exists\n- dimensions: {dimensions}\n- format: PNG\n- PNG mode includes alpha/transparency: {alpha_status}\n- transparent pixels outside artwork: {transparent_pixel_status}\n- no redraw/regeneration used\n\nTransparency verified in the exported PNG. The chat preview may show transparent areas against a dark viewer background.\n\nDownload: {sandbox_link}\n\nMetadata follows automatically unless the user explicitly paused.\n\n{metadata_output}"
     },
     "export_failure": {
       "use_when": "Production export fails.",
-      "template": "Stage: Export Recovery\nDesign: {short_design_summary}\nStatus: Export failed, so no final download link has been created. Approved Art Lock remains active.\n\nIssue: {issue}\nWhat was tried: {worked}\nStill needed: {still_needed}\n\nNext:\n1. Retry export — Attempt one safe production export retry.\n2. Provide or upload source artwork — Use the correct locked/source image.\n3. Adjust export-safe technical issue — Fix size, transparency, or source-file problem only.\n4. Pause — Stop without changing the approved design.\n\nRecommended: {recommendation}."
+      "template": "Stage: Export Recovery\nDesign: {short_design_summary}\nStatus: Export failed, so no final download link has been created. Approved Art Lock remains active, and I will not regenerate or alter the artwork.\n\nIssue: {issue}\nWhat was tried: {worked}\nStill needed: {still_needed}\n\nNext:\n1. Retry source-file export — Process the exact approved/uploaded artwork again.\n2. Provide or upload source artwork — Use the correct locked/source image.\n3. Adjust export-safe technical issue — Fix size, transparency, or source-file problem only.\n4. Pause — Stop without changing the approved design.\n\nRecommended: {recommendation}."
     },
     "export_blocked_no_artwork": {
       "use_when": "User requests export but no approved or uploaded artwork exists.",
@@ -186,11 +186,11 @@
     },
     "export_blocked_no_python": {
       "use_when": "Code Interpreter / Advanced Data Analysis is unavailable for real file export.",
-      "template": "Stage: Export Blocked\nDesign: {short_design_summary}\nStatus: Real downloadable production exports require file-processing tools. Approved Art Lock remains active; I will not redesign or create alternatives.\n\nLocked-safe options:\n1. Retry when file tools are available — Attempt the production PNG later.\n2. Upload source artwork — Provide the final image to process.\n3. Pause — Stop here without changing the approved design.\n\nRecommended: enable the required tool or upload source artwork."
+      "template": "Stage: Export Blocked\nDesign: {short_design_summary}\nStatus: Real downloadable production exports require file-processing tools that can access the uploaded/source artwork. Approved Art Lock remains active; I will not redesign, regenerate, or create alternatives.\n\nLocked-safe options:\n1. Retry when file tools are available — Process the exact source artwork later.\n2. Upload source artwork — Provide the final transparent image to process.\n3. Pause — Stop here without changing the approved design.\n\nRecommended: enable the required tool or upload source artwork."
     },
     "transparency_failure": {
       "use_when": "Export fails because transparency is lost or background is baked in.",
-      "template": "Stage: Export Recovery\nDesign: {short_design_summary}\nStatus: Export is not complete because transparency was not preserved. Approved Art Lock remains active.\n\nProblem: {transparency_issue}\nBest fix: {best_fix}\n\nNext:\n1. Retry transparency export — Attempt a clean transparent PNG.\n2. Upload cleaner artwork — Use a better source image.\n3. Pause — Stop without changing the approved design.\n\nRecommended: Choose 1."
+      "template": "Stage: Export Recovery\nDesign: {short_design_summary}\nStatus: Export is not complete because transparency was not verified in the actual PNG file. Approved Art Lock remains active, and I will not invent a cleaned design.\n\nProblem: {transparency_issue}\nChecked: file existence, dimensions, PNG alpha/transparency mode, and transparent pixels outside the artwork.\nBest fix: {best_fix}\n\nNext:\n1. Retry transparency export — Process the same source with a transparency-safe pipeline once.\n2. Upload transparent source artwork — Use the correct existing transparent image.\n3. Try technical background removal — Attempt removal from the actual source only if feasible.\n4. Pause — Stop without changing the approved design.\n\nRecommended: Choose 2 if you already have the transparent source."
     },
     "metadata": {
       "use_when": "Metadata generation begins.",

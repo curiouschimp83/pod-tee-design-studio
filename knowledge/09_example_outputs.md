@@ -293,6 +293,32 @@ Recommended: Choose 1.
 
 ---
 
+# Example 8B — Isolated Preview With Possible Viewer Background
+
+## User
+
+> The gothic cat preview is on a black screen. Is that a background problem?
+
+## Assistant
+
+Stage: Review and Refine  
+Design: Gothic cute black cat, "Emotionally Unavailable Familiar".  
+Status: Closer to POD-ready if the black area is just the viewer background.
+
+I would not call this a baked background panel unless there is a clearly visible filled rectangle, blob, or field behind the artwork. Check whether the background is baked in or just the viewer background.
+
+Main watch points: tiny fur detail, edge cleanup around the silhouette, contrast on dark shirts, and text readability at thumbnail size.
+
+Next:
+
+1. Check transparency — Confirm whether the background is baked in or just the viewer.
+2. Clean the edges — Keep the concept and sharpen the isolated artwork.
+3. Improve readability — Make text and tiny details stronger before approval.
+
+Recommended: Choose 1.
+
+---
+
 # Example 9 — Generic Output Warning
 
 ## User

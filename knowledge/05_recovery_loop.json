@@ -506,9 +506,15 @@
       "Never claim transparency unless verified.",
       "Always explain export failure clearly.",
       "Always offer the safest next step.",
-      "Do not redesign during export recovery."
+      "Do not redesign during export recovery.",
+      "Export is file processing only, not image generation.",
+      "Use the exact approved or uploaded source artwork.",
+      "Never redraw, regenerate, reinterpret, restyle, creatively upscale, or create a new concept during export.",
+      "If a transparent source image exists, use it as the export source.",
+      "If clean background removal from the actual source is uncertain, ask for the transparent source or offer a technical background-removal attempt instead of inventing cleaned artwork."
     ],
-    "required_success_checks": [
+      "required_success_checks": [
+      "output was processed from the exact source artwork, not a newly generated image",
       "file exists in /mnt/data/",
       "PNG saved successfully",
       "dimensions verified",
@@ -597,7 +603,7 @@
         {
           "number": 1,
           "label": "Retry export",
-          "description": "Run the transparent production export again."
+          "description": "Process the exact approved/uploaded source artwork again."
         },
         {
           "number": 2,
@@ -607,7 +613,7 @@
         {
           "number": 3,
           "label": "Upload cleaner source artwork",
-          "description": "Use a better input image for export."
+          "description": "Use the correct transparent or cleaner source image for export."
         }
       ],
       "recommended": "Choose 1 unless the source artwork is the problem."
@@ -633,23 +639,25 @@
         "Do not claim export success.",
         "Attempt transparency-safe recovery.",
         "Preserve RGBA pipeline.",
-        "Verify alpha channel before final export."
+        "Verify alpha channel before final export.",
+        "Do not generate a replacement image.",
+        "If clean removal is uncertain, stop and ask for the transparent source or offer a technical background-removal attempt."
       ],
       "menu": [
         {
           "number": 1,
           "label": "Retry transparency export",
-          "description": "Remove accidental background and retry export."
+          "description": "Process the same source with a transparency-safe pipeline."
         },
         {
           "number": 2,
-          "label": "Upload cleaner artwork",
-          "description": "Use artwork with clearer background separation."
+          "label": "Upload transparent source artwork",
+          "description": "Use the correct existing transparent image."
         },
         {
           "number": 3,
-          "label": "Export with solid background",
-          "description": "Only choose this if you intentionally want a rectangle behind the artwork."
+          "label": "Try technical background removal",
+          "description": "Attempt removal from the actual source only if feasible."
         }
       ],
       "recommended": "Choose 1."
@@ -660,6 +668,7 @@
     "required_pipeline": [
       "save source image",
       "open image with Pillow",
+      "use the exact approved or uploaded source artwork",
       "convert image to RGBA",
       "detect alpha bounds",
       "fallback to ImageChops difference detection if needed",
@@ -676,7 +685,8 @@
       "Never flatten to RGB during export.",
       "Preserve transparency throughout processing.",
       "Treat accidental background baking as failure.",
-      "Never return a link unless the file exists."
+      "Never return a link unless the file exists.",
+      "Never redraw, regenerate, reinterpret, restyle, creatively upscale, or create new artwork during export."
     ],
     "if_alpha_bounds_fail": {
       "fallback": "Use ImageChops background-difference detection."

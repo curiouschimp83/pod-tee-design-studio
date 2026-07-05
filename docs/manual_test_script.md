@@ -473,6 +473,85 @@ Fail signs:
 - Treats the soft panel as production-ready transparency.
 - Claims export readiness from the preview.
 
+## Test 20: Viewer Background Is Not Misdiagnosed As Baked Panel
+
+Pass/fail: [ ]
+
+Starting state: Review/refine stage after a gothic cat preview was generated.
+
+User message:
+
+> The preview looks mostly isolated on a black viewer background with a small glow around the cat. Is it production-ready?
+
+Expected behaviour:
+
+- Does not claim there is a baked background panel unless a filled rectangle, blob, or field is clearly visible behind the artwork.
+- If uncertain, says to check whether the background is baked in or just the viewer background.
+- Treats transparent-looking isolated artwork as closer to POD-ready.
+- Focuses on real review issues such as tiny detail, edge cleanup, contrast, and text readability.
+- Gives a numbered plain-English `Next` section with no more than 4 choices.
+
+Fail signs:
+
+- Misdiagnoses the viewer background as a large baked panel.
+- Treats a small intentional glow or shadow as a production-blocking background fill.
+- Gives unnumbered next actions.
+- Claims final transparency/export readiness without file verification.
+
+## Test 21: Existing Transparent Source Exports Without Regeneration
+
+Pass/fail: [ ]
+
+Starting state: New conversation or image intake with an existing transparent design image uploaded.
+
+User message:
+
+> Use this transparent design as the source and prepare/export the final PNG.
+
+Expected behaviour:
+
+- Treats export as file processing only, not image generation.
+- Uses the exact uploaded transparent source artwork as the export source.
+- Does not redraw, regenerate, reinterpret, restyle, creatively upscale, or create a new concept.
+- Preserves visible artwork exactly unless the user explicitly requests a production-safe technical edit.
+- Performs only allowed export edits: trim transparent/empty space, preserve transparency, centre, fit to 4500 x 5400 px, save PNG.
+- Verifies dimensions, transparency, and file existence before providing any download link.
+- If tools cannot access the uploaded image, says so honestly and stays locked/ready rather than inventing a replacement.
+
+Fail signs:
+
+- Any visual redesign, restyling, new generated image, altered colours, altered composition, or changed subject.
+- Uses a newly generated image as the export source.
+- Claims a download link without a real processed file.
+- Claims success without verifying dimensions/transparency/file existence.
+- If background removal is needed and uncertain, invents a cleaned design instead of asking for the transparent source or offering a technical removal attempt.
+
+## Test 22: Exported PNG Looks Black In Chat Preview
+
+Pass/fail: [ ]
+
+Starting state: Export stage after a PNG has been created and shown in chat, where the preview appears to have a black background.
+
+User message:
+
+> This looks like it has a black background. Is the exported PNG actually transparent?
+
+Expected behaviour:
+
+- Does not judge export transparency from the chat preview alone.
+- Verifies the actual exported/downloaded PNG file directly.
+- Checks that the file exists before link, dimensions are 4500 x 5400 px, PNG mode includes alpha/transparency, and transparent pixels exist outside the artwork.
+- If verified, says: "Transparency verified in the exported PNG. The chat preview may show transparent areas against a dark viewer background."
+- Explains the difference between baked-in background pixels and transparent pixels shown against the app viewer background.
+- If transparency is not verified, does not provide the file as POD-ready and attempts one safe repair/retry.
+
+Fail signs:
+
+- Uses the chat preview alone to claim transparency.
+- Dismisses the black background as viewer behaviour without checking the file.
+- Provides or keeps a POD-ready download link when transparency is not verified.
+- Fails to check dimensions, alpha/transparency mode, file existence, or transparent pixels outside the artwork.
+
 ## Coverage Notes
 
 Risks still worth testing later:
