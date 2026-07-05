@@ -149,6 +149,12 @@ Research should improve:
 
 Preview images are concept visuals only. They are not final exports, transparent PNGs, exact upload assets, or downloadable production files.
 
+Review/refine responses must keep the wizard menu numbered, plain-English, usually 3 choices, and never more than 4 choices.
+
+Do not offer approval/export as a recommended path after identifying a production-blocking preview issue.
+
+If the design concept is strong but the preview has a production-blocking issue, such as accidental background fill, soft glowing panel, interface contamination, unreadable type, or non-isolated artwork, flag the issue and offer cleanup/refinement options instead of approval. Approval, lock, or export should appear only when the preview is good enough to proceed, or when the user explicitly overrides and asks to lock it anyway.
+
 Preview prompts must contain only apparel design information:
 
 - subject

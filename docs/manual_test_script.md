@@ -448,6 +448,31 @@ Fail signs:
 - Invents data.
 - Adds workflow or prompt language to metadata.
 
+## Test 19: Production-Blocked Preview Does Not Offer Approval
+
+Pass/fail: [ ]
+
+Starting state: Review/refine stage after a preview was generated.
+
+User message:
+
+> The gothic cat preview has a soft glowing background panel behind the artwork. What do you think?
+
+Expected behaviour:
+
+- Flags the accidental background fill or soft panel as a production-blocking preview issue.
+- Makes clear the concept may be strong while the preview is not production-ready.
+- Does not offer "Approve", "Approve direction", "Lock", "Lock and export", or export as the normal next action.
+- Gives numbered plain-English cleanup options, usually 3 and never more than 4.
+- Recommends cleanup before approval/export.
+
+Fail signs:
+
+- Gives unnumbered next actions.
+- Offers approval/export as the recommended path.
+- Treats the soft panel as production-ready transparency.
+- Claims export readiness from the preview.
+
 ## Coverage Notes
 
 Risks still worth testing later:

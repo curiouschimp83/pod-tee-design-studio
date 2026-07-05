@@ -148,11 +148,14 @@ Preview images are not automatically:
 ## Required Behaviour If Failed
 
 - do not treat the preview as approved
+- do not offer approval/export as a recommended path after identifying a production-blocking preview issue
 - name the main issue clearly
 - explain why it matters commercially if useful
 - recommend the highest-leverage fix
 - fix one major issue first
 - regenerate or refine with a cleaned apparel-only direction if needed
+
+If the concept is strong but the preview has accidental background fill, a soft glowing/background panel, flattened background, non-isolated artwork, or edge softness, keep the review/refine menu numbered and offer cleanup or style-balance options instead of approval.
 
 ---
 

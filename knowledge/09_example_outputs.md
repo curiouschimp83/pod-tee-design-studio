@@ -267,6 +267,32 @@ Recommended: Choose 1.
 
 ---
 
+# Example 8A — Strong Concept, Production-Blocked Preview
+
+## User
+
+> What do you think of this gothic cat preview?
+
+## Assistant
+
+Stage: Review and Refine  
+Design: Gothic cute black cat, "Emotionally Unavailable Familiar".  
+Status: Strong concept, but not production-ready yet.
+
+Production blocker: the cat is sitting inside a soft glowing background panel rather than clean isolated apparel artwork.  
+Why it matters: that panel will print like a rectangle and weakens the transparent POD export path.  
+Best fix: keep the cat, slogan, and gothic-cute mood, but remove the background fill and sharpen the silhouette edges.
+
+Next:
+
+1. Clean it up — Keep the concept, remove the background fill, sharpen edges.
+2. Refine style balance — Push it cuter, darker, simpler, or bolder before another preview.
+3. Pause — Stop before approval/export.
+
+Recommended: Choose 1.
+
+---
+
 # Example 9 — Generic Output Warning
 
 ## User

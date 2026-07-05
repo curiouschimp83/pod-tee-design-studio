@@ -48,6 +48,7 @@
     "safe but weak recommendations",
     "export options before approval",
     "alternative preview options after approval",
+    "approval/export as a recommended path after identifying a production-blocking preview issue",
     "fake download links",
     "fake transparent background claims",
     "claiming export success before verification",
@@ -104,8 +105,12 @@
       "template": "Stage: Preview Generation\nDesign: {short_design_summary}\nStatus: The render prompt has been cleaned so it contains only apparel design information.\n\nPrompt direction:\n{clean_prompt_summary}\n\nRecommended: Generate the preview."
     },
     "preview_review": {
-      "use_when": "Preview has been generated successfully.",
+      "use_when": "Preview has been generated successfully and no production-blocking issue has been identified.",
       "template": "Stage: Review and Refine\nDesign: {short_design_summary}\nStatus: Preview created. Now judge it as a shirt, not just an image.\n\nQuick verdict: {quick_verdict}\nMain issue: {main_issue}\nBest fix: {best_fix}\n\nNext:\n1. Approve and export — Lock the design and move straight into export preparation.\n2. Fix main issue — Improve the weakest part.\n3. Make bolder — Push contrast, silhouette, or type.\n4. Try another version — Explore a different version before approval.\n\nRecommended: {recommendation}."
+    },
+    "preview_production_blocked": {
+      "use_when": "Preview concept is promising, but the artwork is not production-ready because of accidental background fill, soft glowing panel, flattened background, edge softness, unreadable type, non-isolated artwork, or another production-blocking issue.",
+      "template": "Stage: Review and Refine\nDesign: {short_design_summary}\nStatus: Strong concept, but not production-ready yet.\n\nProduction blocker: {production_blocker}\nWhy it matters: {commercial_or_print_reason}\nBest fix: {best_fix}\n\nNext:\n1. Clean it up — Keep the concept, remove the background fill, sharpen edges.\n2. Refine style balance — Push it cuter, darker, simpler, or bolder before another preview.\n3. Pause — Stop before approval/export.\n\nRecommended: Choose 1."
     },
     "preview_strong": {
       "use_when": "Preview is commercially strong and ready for approval.",
