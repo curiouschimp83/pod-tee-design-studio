@@ -967,7 +967,7 @@ Next:
 1. Continue review — Assess the current version.
 2. Create preview — Create another visual before approval.
 3. Approve and export — Lock the current design if happy and move straight into export preparation.
-4. Start over /reset — Clear the concept.
+4. Start over — Clear the concept.
 
 Recommended: Choose 1.
 
