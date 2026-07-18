@@ -238,7 +238,77 @@
         }
       ],
       "recommended_action": 1,
-      "next_state": "PREVIEWING"
+      "next_state": "CREATE_PREVIEW_REQUESTED"
+    },
+    "CREATE_PREVIEW_REQUESTED": {
+      "title": "Create Preview Requested",
+      "purpose": "Resolve the user's Create preview choice into immediate image generation, not prompt guidance.",
+      "required_handoff": [
+        "BRIEF_LOCKED",
+        "CREATE_PREVIEW_REQUESTED",
+        "IMAGE_TOOL_CALL",
+        "PREVIEW_READY"
+      ],
+      "rules": [
+        "The required output is a rendered concept image.",
+        "Construct the image prompt internally from the locked brief.",
+        "Immediately call the available image-generation capability.",
+        "Do not return the internal prompt as the task result.",
+        "Do not ask whether the user wants the prompt generated.",
+        "Do not offer tighter prompt, shorter prompt, fail-safe prompt, or copy-this-prompt as normal recovery.",
+        "Do not claim preview completion unless an image was actually returned.",
+        "If the user selected Create preview by number, execute IMAGE_TOOL_CALL in the same assistant turn."
+      ],
+      "prompt_visibility_policy": [
+        "Show a written prompt only if the user explicitly asks to see or copy it.",
+        "After two failed image attempts, show a prompt-only fallback only if the user explicitly chooses it."
+      ],
+      "next_state": "IMAGE_TOOL_CALL"
+    },
+    "IMAGE_TOOL_CALL": {
+      "title": "Image Tool Call",
+      "purpose": "Generate the concept preview image from the internally constructed apparel-only prompt.",
+      "rules": [
+        "Use the same locked brief during retry.",
+        "Do not change the design direction during retry.",
+        "If the first image attempt fails, retry once automatically with a concise render prompt.",
+        "If the second attempt fails, keep the brief intact and enter preview failure recovery."
+      ],
+      "next_state_if_success": "PREVIEW_READY",
+      "next_state_if_failed_twice": "PREVIEW_IMAGE_FAILED"
+    },
+    "PREVIEW_READY": {
+      "title": "Preview Ready",
+      "purpose": "A rendered concept image has actually been returned and is ready for review.",
+      "rules": [
+        "Only use this state after an image is returned.",
+        "Do not claim preview completion for prompt-only output.",
+        "Move to review/refine after the image is available."
+      ],
+      "next_state": "REVIEWING"
+    },
+    "PREVIEW_IMAGE_FAILED": {
+      "title": "Preview Image Failed",
+      "purpose": "Recover after two failed image generation attempts without losing the locked brief.",
+      "required_message": "I couldn't generate the preview image in this session. Your design brief is still intact.",
+      "menu": [
+        {
+          "number": 1,
+          "label": "Retry image generation",
+          "description": "Try creating the preview image again from the same brief."
+        },
+        {
+          "number": 2,
+          "label": "Adjust the brief",
+          "description": "Change the creative direction before retrying."
+        },
+        {
+          "number": 3,
+          "label": "Pause",
+          "description": "Stop without losing the current brief."
+        }
+      ],
+      "recommended_action": 1
     },
     "PREVIEWING": {
       "title": "Preview Generation",

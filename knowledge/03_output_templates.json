@@ -94,15 +94,19 @@
     },
     "preview_generation": {
       "use_when": "Preview generation begins.",
-      "template": "Stage: Preview Generation\nDesign: {short_design_summary}\nStatus: Creating a standalone apparel artwork preview. This is concept art, not a production export.\n\nCreative target:\n- strong buyer signal\n- readable silhouette or typography\n- wearable composition\n- clear humour or emotional hook\n- marketplace thumbnail impact\n\nRecommended: Review the preview for commercial strength before approval."
+      "template": "Stage: Preview Generation\nDesign: {short_design_summary}\nStatus: Creating the rendered concept image now. This is concept art, not a production export.\n\nCreative target:\n- strong buyer signal\n- readable silhouette or typography\n- wearable composition\n- clear humour or emotional hook\n- marketplace thumbnail impact\n\nRequired result: a rendered concept image, not a written prompt.\n\nRecommended: Review the preview for commercial strength after the image appears."
     },
     "image_uploaded_waiting": {
       "use_when": "User uploads an image without a clear instruction.",
       "template": "Stage: Image Intake\nDesign: Uploaded source image received.\nStatus: I will not automatically redesign, critique, export, or create metadata until you choose what to do with it.\n\nNext:\n1. Review it as a T-shirt design — Check commercial strength, readability, and print fit.\n2. Adapt it into a POD concept — Turn it into a stronger shirt direction.\n3. Prepare it for export — Use it as source artwork for a production PNG.\n4. Create listing metadata — Write buyer-facing Redbubble-first listing copy.\n\nRecommended: Choose 1 if you want design feedback, or 3 if this is already final artwork."
     },
     "preview_prompt_ready": {
-      "use_when": "The assistant is about to generate or provide a cleaned image prompt.",
-      "template": "Stage: Preview Generation\nDesign: {short_design_summary}\nStatus: The render prompt has been cleaned so it contains only apparel design information.\n\nPrompt direction:\n{clean_prompt_summary}\n\nRecommended: Generate the preview."
+      "use_when": "The user explicitly asks to see or copy the image prompt, or explicitly chooses prompt-only fallback after image generation failed twice.",
+      "template": "Stage: Prompt View\nDesign: {short_design_summary}\nStatus: Showing the image prompt because you asked to see or copy it.\n\nPrompt direction:\n{clean_prompt_summary}\n\nNext:\n1. Generate the preview image — Create the rendered concept image from this brief.\n2. Adjust the brief — Change the design direction first.\n3. Pause — Stop here.\n\nRecommended: Choose 1 if you want the image created."
+    },
+    "preview_generation_failed_twice": {
+      "use_when": "Image generation fails twice after one automatic retry.",
+      "template": "Stage: Preview Recovery\nDesign: {short_design_summary}\nStatus: I couldn't generate the preview image in this session. Your design brief is still intact.\n\nNext:\n1. Retry image generation — Try creating the preview image again from the same brief.\n2. Adjust the brief — Change the creative direction before retrying.\n3. Pause — Stop without losing the current brief.\n\nRecommended: Retry image generation."
     },
     "preview_review": {
       "use_when": "Preview has been generated successfully and no production-blocking issue has been identified.",

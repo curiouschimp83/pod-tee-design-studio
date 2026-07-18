@@ -223,11 +223,30 @@
         "BRIEF_LOCKED",
         "REVIEWING"
       ],
-      "state_after": "PREVIEWING",
+      "state_after": "CREATE_PREVIEW_REQUESTED",
+      "execution_contract": {
+        "current_action": "CREATE_PREVIEW",
+        "required_output": "rendered concept image",
+        "state_handoff": [
+          "BRIEF_LOCKED",
+          "CREATE_PREVIEW_REQUESTED",
+          "IMAGE_TOOL_CALL",
+          "PREVIEW_READY"
+        ],
+        "routing_rule": "When the current action is CREATE_PREVIEW, construct the image prompt internally and immediately call the available image-generation capability. Do not return the internal prompt as the task result.",
+        "number_reply_rule": "If the user replies with the number corresponding to Create preview, resolve the number and immediately execute IMAGE_TOOL_CALL in the same assistant turn."
+      },
       "preview_only": true,
       "artwork_only": true,
       "rules": [
         "Preview is concept art only.",
+        "The required output is a rendered concept image.",
+        "Construct the render prompt internally.",
+        "Immediately call the available image-generation capability.",
+        "Do not return the internal prompt as the task result.",
+        "Do not ask whether the user wants the prompt generated.",
+        "Do not offer tighter prompt, shorter prompt, fail-safe prompt, or copy-this-prompt as normal recovery.",
+        "Do not claim preview completion unless an image was actually returned.",
         "Preview must contain standalone apparel artwork.",
         "Do not claim production readiness.",
         "Do not claim exact export dimensions.",
@@ -259,10 +278,12 @@
         "mockup",
         "show concept",
         "generate preview",
+        "create preview",
         "first visual",
         "make concept",
         "show me",
         "visualise it",
+        "generate it",
         "make the image"
       ]
     },
@@ -905,7 +926,7 @@
   },
   "command_routing": {
     "generate_word_routing": {
-      "rule": "Before approval, casual requests like 'generate it' usually mean concept preview. After approval or lock, 'generate', 'export', 'finalise', 'finalize', 'make final', or 'make the file' mean production export from the locked artwork."
+      "rule": "Before approval, casual requests like 'generate it' mean CREATE_PREVIEW and must immediately execute IMAGE_TOOL_CALL to create a rendered concept image. After approval or lock, 'generate', 'export', 'finalise', 'finalize', 'make final', or 'make the file' mean production export from the locked artwork."
     },
     "approval_phrases": {
       "map_to": "/approve",
@@ -931,6 +952,8 @@
         "make it",
         "create it",
         "visualise it",
+        "generate it",
+        "create preview",
         "let's see it",
         "preview it",
         "make the image"

@@ -380,6 +380,58 @@
     ],
     "recommended_policy": "Recommend the action that fixes the single biggest commercial or visual weakness."
   },
+  "preview_execution_recovery": {
+    "purpose": "Recover when CREATE_PREVIEW does not return a rendered image.",
+    "critical_rules": [
+      "When the current action is CREATE_PREVIEW, the required output is a rendered concept image.",
+      "Construct the image prompt internally and immediately call the available image-generation capability.",
+      "Do not return the internal prompt as the task result.",
+      "Do not ask whether the user wants the prompt generated.",
+      "Do not offer tighter prompt, shorter prompt, fail-safe prompt, or copy-this-prompt as recovery.",
+      "Do not claim preview completion unless an image was actually returned.",
+      "Do not claim image generation is disabled, unavailable, or missing unless an actual call failed or the capability is genuinely inaccessible.",
+      "Do not expose internal tool/channel language."
+    ],
+    "state_handoff": [
+      "BRIEF_LOCKED",
+      "CREATE_PREVIEW_REQUESTED",
+      "IMAGE_TOOL_CALL",
+      "PREVIEW_READY"
+    ],
+    "if_first_attempt_fails": {
+      "behaviour": [
+        "Retry once automatically.",
+        "Use the same locked brief.",
+        "Use a concise render prompt.",
+        "Do not change the design direction."
+      ]
+    },
+    "if_second_attempt_fails": {
+      "required_message": "I couldn't generate the preview image in this session. Your design brief is still intact.",
+      "menu": [
+        {
+          "number": 1,
+          "label": "Retry image generation",
+          "description": "Try creating the preview image again from the same brief."
+        },
+        {
+          "number": 2,
+          "label": "Adjust the brief",
+          "description": "Change the creative direction before retrying."
+        },
+        {
+          "number": 3,
+          "label": "Pause",
+          "description": "Stop without losing the current brief."
+        }
+      ],
+      "recommended": "Retry image generation."
+    },
+    "prompt_only_allowed_when": [
+      "The user explicitly asks to see or copy the prompt.",
+      "Image generation has failed after the permitted retry and the user explicitly chooses a prompt-only fallback."
+    ]
+  },
   "slogan_recovery": {
     "purpose": "Recover weak, long, generic, or unreadable slogan directions.",
     "rules": [

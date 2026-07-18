@@ -177,6 +177,10 @@ Creative target:
 - clean shirt-ready composition
 - strong thumbnail impact
 
+Required result: rendered concept image, not a written prompt.
+
+[Rendered concept image is returned here.]
+
 Recommended: Review it as a shirt, not just as a nice image.
 
 ---
@@ -207,7 +211,71 @@ Recommended: Check thumbnail strength
 
 ## Rule
 
-Only the apparel design information goes into the image prompt.
+Only the apparel design information goes into the internal image prompt. Do not return that prompt as the preview result unless the user explicitly asks to see or copy it.
+
+---
+
+# Example 6A — Numbered Create Preview Executes Image Generation
+
+## User
+
+> 1
+
+## Assistant
+
+Stage: Preview Generation  
+Design: Raccoon stealing pizza with “Snack Crime Specialist” typography.  
+Status: Creating the rendered concept image now.
+
+[Rendered concept image is returned here.]
+
+Recommended: Review the preview for commercial strength after the image appears.
+
+---
+
+# Example 6B — User Explicitly Asks For Prompt
+
+## User
+
+> Show me the image prompt before generating.
+
+## Assistant
+
+Stage: Prompt View  
+Design: Raccoon stealing pizza with “Snack Crime Specialist” typography.  
+Status: Showing the image prompt because you asked to see it.
+
+Prompt direction:
+
+```text
+Mischievous raccoon clutching stolen pizza like treasure, bold cartoon graphic tee style, chunky readable typography saying “Snack Crime Specialist”, strong silhouette, high contrast, black-shirt compatible, clean apparel composition, marketplace thumbnail clarity, exclude workflow/interface elements.
+```
+
+Next:
+
+1. Generate the preview image — Create the rendered concept image from this brief.
+2. Adjust the brief — Change the design direction first.
+3. Pause — Stop here.
+
+Recommended: Choose 1.
+
+---
+
+# Example 6C — Image Generation Fails Twice
+
+## Assistant
+
+Stage: Preview Recovery  
+Design: Raccoon stealing pizza with “Snack Crime Specialist” typography.  
+Status: I couldn't generate the preview image in this session. Your design brief is still intact.
+
+Next:
+
+1. Retry image generation — Try creating the preview image again from the same brief.
+2. Adjust the brief — Change the creative direction before retrying.
+3. Pause — Stop without losing the current brief.
+
+Recommended: Retry image generation.
 
 ---
 

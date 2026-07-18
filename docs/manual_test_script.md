@@ -552,6 +552,128 @@ Fail signs:
 - Provides or keeps a POD-ready download link when transparency is not verified.
 - Fails to check dimensions, alpha/transparency mode, file existence, or transparent pixels outside the artwork.
 
+## Test 23: Numbered Create Preview Generates Image
+
+Pass/fail: [ ]
+
+Starting state: Brief locked with a visible numbered menu where option 1 is "Create preview".
+
+User message:
+
+> 1
+
+Expected behaviour:
+
+- Resolves `1` to "Create preview".
+- Constructs the image prompt internally.
+- Immediately generates a rendered concept image in the same assistant turn.
+- Does not return only a written prompt.
+- Does not ask whether to generate the prompt.
+- Does not claim preview completion unless an image is actually returned.
+
+Fail signs:
+
+- Returns only an image prompt.
+- Offers tighter, shorter, fail-safe, or copyable prompt options.
+- Says it can help write a prompt instead of generating the preview.
+- Remains in text-guidance mode.
+
+## Test 24: Generate It Before Approval Creates Concept Preview
+
+Pass/fail: [ ]
+
+Starting state: Brief locked, not approved.
+
+User message:
+
+> Generate it.
+
+Expected behaviour:
+
+- Treats "generate it" before approval as concept preview creation.
+- Constructs the prompt internally and generates a rendered concept image.
+- Does not explain prompt construction as the final result.
+- Does not treat this as production export.
+
+Fail signs:
+
+- Returns a prompt instead of an image.
+- Starts export before approval.
+- Asks whether the user wants the prompt generated.
+
+## Test 25: First Image Attempt Fails And Retries Once
+
+Pass/fail: [ ]
+
+Starting state: Create preview requested from a locked brief.
+
+User message:
+
+> Create preview.
+
+Expected behaviour:
+
+- If the first image generation attempt fails, automatically retries once.
+- Uses the same locked brief and a concise render prompt.
+- Does not change the design direction during retry.
+- Does not immediately offer prompt variants.
+
+Fail signs:
+
+- Offers prompt-only fallback after the first failure.
+- Changes the concept, style, slogan, or composition during retry.
+- Claims image generation is disabled or unavailable without an actual failed call or inaccessible capability.
+
+## Test 26: Both Image Attempts Fail
+
+Pass/fail: [ ]
+
+Starting state: Create preview requested and both permitted image attempts fail.
+
+User message:
+
+> [Observe recovery response after second failed image attempt.]
+
+Expected behaviour:
+
+- Keeps the design brief intact.
+- Says: "I couldn't generate the preview image in this session. Your design brief is still intact."
+- Shows only numbered options:
+  1. Retry image generation
+  2. Adjust the brief
+  3. Pause
+- Recommended: Retry image generation.
+- Does not expose internal tool/channel language.
+
+Fail signs:
+
+- Resets the workflow.
+- Offers tighter prompt, shorter prompt, fail-safe prompt, or copy-this-prompt.
+- Mentions commentary channel, tool not listed, attempting to call the tool, text-guidance mode, or environment issue.
+
+## Test 27: User Explicitly Asks To See Image Prompt
+
+Pass/fail: [ ]
+
+Starting state: Brief locked before preview generation.
+
+User message:
+
+> Show me the image prompt before generating.
+
+Expected behaviour:
+
+- May show the written image prompt because the user explicitly asked.
+- Does not have to generate an image unless the user also requests generation.
+- Keeps the prompt free of workflow text, stage labels, numbered choices, slash commands, and export instructions.
+- Offers numbered plain-English next options, including generating the preview image.
+
+Fail signs:
+
+- Refuses to show the prompt even though the user asked.
+- Includes workflow/menu/export language in the prompt.
+- Treats prompt display as a completed preview image.
+
 ## Coverage Notes
 
 Risks still worth testing later:
